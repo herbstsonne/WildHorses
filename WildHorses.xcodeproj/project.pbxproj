@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD12169B2C8F970200420E1D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD12169A2C8F970200420E1D /* Extension.swift */; };
 		CD2A5C9E2C8F905300CCD661 /* WildHorsesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5C9D2C8F905300CCD661 /* WildHorsesApp.swift */; };
-		CD2A5CA02C8F905300CCD661 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5C9F2C8F905300CCD661 /* ContentView.swift */; };
 		CD2A5CA22C8F905400CCD661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD2A5CA12C8F905400CCD661 /* Assets.xcassets */; };
 		CD2A5CA62C8F905400CCD661 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD2A5CA52C8F905400CCD661 /* Preview Assets.xcassets */; };
 		CD2A5CB02C8F905500CCD661 /* WildHorsesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CAF2C8F905500CCD661 /* WildHorsesTests.swift */; };
 		CD2A5CBA2C8F905500CCD661 /* WildHorsesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CB92C8F905500CCD661 /* WildHorsesUITests.swift */; };
 		CD2A5CBC2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CBB2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift */; };
+		CD2A5CC92C8F906800CCD661 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CC82C8F906800CCD661 /* FirstView.swift */; };
+		CD2A5CCB2C8F908900CCD661 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CCA2C8F908900CCD661 /* GameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD12169A2C8F970200420E1D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CD2A5C9A2C8F905300CCD661 /* WildHorses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WildHorses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2A5C9D2C8F905300CCD661 /* WildHorsesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesApp.swift; sourceTree = "<group>"; };
-		CD2A5C9F2C8F905300CCD661 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CD2A5CA12C8F905400CCD661 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD2A5CA32C8F905400CCD661 /* WildHorses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WildHorses.entitlements; sourceTree = "<group>"; };
 		CD2A5CA52C8F905400CCD661 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -45,6 +47,8 @@
 		CD2A5CB52C8F905500CCD661 /* WildHorsesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WildHorsesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2A5CB92C8F905500CCD661 /* WildHorsesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesUITests.swift; sourceTree = "<group>"; };
 		CD2A5CBB2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CD2A5CC82C8F906800CCD661 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
+		CD2A5CCA2C8F908900CCD661 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +100,12 @@
 			isa = PBXGroup;
 			children = (
 				CD2A5C9D2C8F905300CCD661 /* WildHorsesApp.swift */,
-				CD2A5C9F2C8F905300CCD661 /* ContentView.swift */,
 				CD2A5CA12C8F905400CCD661 /* Assets.xcassets */,
 				CD2A5CA32C8F905400CCD661 /* WildHorses.entitlements */,
 				CD2A5CA42C8F905400CCD661 /* Preview Content */,
+				CD2A5CC82C8F906800CCD661 /* FirstView.swift */,
+				CD2A5CCA2C8F908900CCD661 /* GameScene.swift */,
+				CD12169A2C8F970200420E1D /* Extension.swift */,
 			);
 			path = WildHorses;
 			sourceTree = "<group>";
@@ -259,8 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD2A5CA02C8F905300CCD661 /* ContentView.swift in Sources */,
+				CD2A5CC92C8F906800CCD661 /* FirstView.swift in Sources */,
+				CD2A5CCB2C8F908900CCD661 /* GameScene.swift in Sources */,
 				CD2A5C9E2C8F905300CCD661 /* WildHorsesApp.swift in Sources */,
+				CD12169B2C8F970200420E1D /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,8 +438,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -466,8 +474,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
