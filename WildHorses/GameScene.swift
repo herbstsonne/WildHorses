@@ -7,8 +7,13 @@
 
 import Foundation
 import SpriteKit
+import SwiftUI
 
 class GameScene: SKScene {
+  
+  @Binding var score: Int
+  @Binding var showSuccess: Bool
+
   var background = SKSpriteNode(imageNamed: "horsesrunningbeach_2")
   var pointsLabel = SKLabelNode()
   let box = SKSpriteNode(texture: SKTexture(imageNamed: "painted_horse"), color: .blue, size: CGSize(width: 50, height: 50))
@@ -21,8 +26,18 @@ class GameScene: SKScene {
   ]
   
   var boxPosition = CGPoint()
-  var points = 0
 
+  init(score: Binding<Int>, showSuccess: Binding<Bool>) {
+    _score = score
+    _showSuccess = showSuccess
+    super.init(size: CGSize(width: 300, height: 400))
+    self.scaleMode = .fill
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   func update(_ currentTime: TimeInterval, for scene: SKScene) {
     boxPosition = box.position
   }
@@ -37,7 +52,7 @@ class GameScene: SKScene {
     
     pointsLabel.position = CGPoint(x:self.frame.maxX - 60, y:self.frame.maxY - 50);
     pointsLabel.color = .gray
-    pointsLabel.text = "Points: \(points)"
+    pointsLabel.text = "Points: \(score)"
     addChild(pointsLabel)
     
     box.position = CGPoint(x:self.frame.midX, y:self.frame.minY + 20);
@@ -66,17 +81,22 @@ class GameScene: SKScene {
     
     for heart in hearts {
       if heart.contains(touchLocation) {
-        print("hit")
-        heart.removeFromParent()
-        points += 1
-        pointsLabel.text = "Points: \(points)"
+        if self.children.contains(where: {
+          $0 == heart
+        })
+        {
+          print("hit")
+          heart.removeFromParent()
+          score += 1
+          pointsLabel.text = "Points: \(score)"
+        }
       }
     }
     
     if !self.children.contains(where: {
       $0.name == "heart"
     }) {
-      
+      showSuccess.toggle()
     }
   }
 }

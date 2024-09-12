@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct WildHorsesApp: App {
-    var body: some Scene {
-        WindowGroup {
-            FirstView()
-        }
+  
+  @StateObject private var settings = Settings()
+
+  var body: some Scene {
+    WindowGroup {
+      FirstView()
+        .environmentObject(settings)
     }
+  }
 }

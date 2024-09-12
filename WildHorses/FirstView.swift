@@ -11,9 +11,10 @@ import SpriteKit
 struct FirstView: View {
   
   @State private var youWon = false
+  @EnvironmentObject var settings: Settings
 
   var scene: SKScene {
-    let scene = GameScene()
+    let scene = GameScene(score: $settings.score, showSuccess: $youWon)
     scene.size = CGSize(width: 650, height: 300)
     scene.scaleMode = .fill
     return scene
@@ -23,7 +24,7 @@ struct FirstView: View {
     SpriteView(scene: scene)
       .ignoresSafeArea()
       .alert("Congratulations", isPresented: $youWon) {
-        Text("You won")
+        Text("You won with \(settings.score) points :)")
       }
   }
 }

@@ -16,6 +16,7 @@
 		CD2A5CBC2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CBB2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift */; };
 		CD2A5CC92C8F906800CCD661 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CC82C8F906800CCD661 /* FirstView.swift */; };
 		CD2A5CCB2C8F908900CCD661 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CCA2C8F908900CCD661 /* GameScene.swift */; };
+		CD60C8902C930D2100E0789A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD60C88F2C930D2100E0789A /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		CD2A5CBB2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CD2A5CC82C8F906800CCD661 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
 		CD2A5CCA2C8F908900CCD661 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		CD60C88F2C930D2100E0789A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				CD2A5CC82C8F906800CCD661 /* FirstView.swift */,
 				CD2A5CCA2C8F908900CCD661 /* GameScene.swift */,
 				CD12169A2C8F970200420E1D /* Extension.swift */,
+				CD60C88F2C930D2100E0789A /* Settings.swift */,
 			);
 			path = WildHorses;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				CD2A5CCB2C8F908900CCD661 /* GameScene.swift in Sources */,
 				CD2A5C9E2C8F905300CCD661 /* WildHorsesApp.swift in Sources */,
 				CD12169B2C8F970200420E1D /* Extension.swift in Sources */,
+				CD60C8902C930D2100E0789A /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
