@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "heart.pdf",
+      "idiom" : "iphone"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
