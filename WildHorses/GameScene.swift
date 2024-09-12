@@ -24,8 +24,6 @@ class GameScene: SKScene {
     SKSpriteNode(texture: SKTexture(imageNamed: "heart"), color: .blue, size: CGSize(width: 50, height: 50)),
     SKSpriteNode(texture: SKTexture(imageNamed: "heart"), color: .blue, size: CGSize(width: 50, height: 50))
   ]
-  
-  var boxPosition = CGPoint()
 
   init(score: Binding<Int>, showSuccess: Binding<Bool>) {
     _score = score
@@ -36,10 +34,6 @@ class GameScene: SKScene {
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-  
-  func update(_ currentTime: TimeInterval, for scene: SKScene) {
-    boxPosition = box.position
   }
 
   override func didMove(to view: SKView) {
@@ -60,14 +54,8 @@ class GameScene: SKScene {
     box.zPosition = 2
     addChild(box)
     
-    var heartPosition: CGPoint
     for heart in hearts {
-      heartPosition = CGPoint(x: Double.random(in: self.frame.minX...self.frame.maxX), y: Double.random(in: self.frame.minY...self.frame.maxY))
-      heart.position = heartPosition
-      heart.name = "heart"
-      heart.zRotation = Double.random(in: 0...1)
-      heart.zPosition = 1
-      addChild(heart)
+      createHeart(heart: heart)
     }
   }
 
@@ -99,4 +87,29 @@ class GameScene: SKScene {
       showSuccess.toggle()
     }
   }
+                                     
+  func createHeart(heart: SKSpriteNode) {
+   var heartPosition: CGPoint
+   heartPosition = CGPoint(x: Double.random(in: self.frame.minX...self.frame.maxX), y: Double.random(in: self.frame.minY...self.frame.maxY))
+   heart.position = heartPosition
+   heart.name = "heart"
+   heart.zRotation = Double.random(in: 0...1)
+   heart.zPosition = 1
+   addChild(heart)
+   
+   let actualY = random(min: heart.size.height/2, max: size.height - heart.size.height/2)
+   let actualDuration = random(min: CGFloat(10.0), max: CGFloat(20.0))
+   let actionMove = SKAction.move(to: CGPoint(x: -heart.size.width/2, y: actualY), duration: TimeInterval(actualDuration))
+    let actionMoveDone = SKAction.removeFromParent()
+    heart.run(SKAction.sequence([actionMove, actionMoveDone]))
+  }
+  
+  func random() -> CGFloat {
+    return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+  }
+
+  func random(min: CGFloat, max: CGFloat) -> CGFloat {
+    return random() * (max - min) + min
+  }
+
 }

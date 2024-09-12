@@ -24,7 +24,7 @@ struct FirstView: View {
     SpriteView(scene: scene)
       .ignoresSafeArea()
       .alert("Congratulations", isPresented: $youWon) {
-        Text("You won with \(settings.score) points :)")
+        Text("You got \(settings.score) points :)")
       }
   }
 }
