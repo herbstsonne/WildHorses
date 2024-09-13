@@ -16,13 +16,13 @@ class GameScene: SKScene {
 
   var background = SKSpriteNode(imageNamed: "horsesrunningbeach_2")
   var pointsLabel = SKLabelNode()
-  let box = SKSpriteNode(texture: SKTexture(imageNamed: "painted_horse"), color: .blue, size: CGSize(width: 50, height: 50))
+  let box = SKSpriteNode(texture: SKTexture(imageNamed: "nina"), color: .blue, size: CGSize(width: 50, height: 50))
   let hearts = [
-    SKSpriteNode(texture: SKTexture(imageNamed: "heart"), color: .blue, size: CGSize(width: 50, height: 50)),
-    SKSpriteNode(texture: SKTexture(imageNamed: "heart"), color: .blue, size: CGSize(width: 50, height: 50)),
-    SKSpriteNode(texture: SKTexture(imageNamed: "heart"), color: .blue, size: CGSize(width: 50, height: 50)),
-    SKSpriteNode(texture: SKTexture(imageNamed: "heart"), color: .blue, size: CGSize(width: 50, height: 50)),
-    SKSpriteNode(texture: SKTexture(imageNamed: "heart"), color: .blue, size: CGSize(width: 50, height: 50))
+    SKSpriteNode(texture: SKTexture(imageNamed: "wild_horse"), color: .blue, size: CGSize(width: 50, height: 50)),
+    SKSpriteNode(texture: SKTexture(imageNamed: "wild_horse"), color: .blue, size: CGSize(width: 50, height: 50)),
+    SKSpriteNode(texture: SKTexture(imageNamed: "wild_horse"), color: .blue, size: CGSize(width: 50, height: 50)),
+    SKSpriteNode(texture: SKTexture(imageNamed: "wild_horse"), color: .blue, size: CGSize(width: 50, height: 50)),
+    SKSpriteNode(texture: SKTexture(imageNamed: "wild_horse"), color: .blue, size: CGSize(width: 50, height: 50))
   ]
 
   init(score: Binding<Int>, showSuccess: Binding<Bool>) {
@@ -37,7 +37,7 @@ class GameScene: SKScene {
   }
 
   override func didMove(to view: SKView) {
-    physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+    //physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
 
     background.zPosition = 0
     background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
@@ -87,7 +87,27 @@ class GameScene: SKScene {
       showSuccess.toggle()
     }
   }
-                                     
+      
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+      if let touchLocation = touches.first?.location(in: self), let node = nodes(at: touchLocation).first {
+          if node.name != nil {
+              if node.name == "background" {
+                  background.position = touchLocation
+              }
+          }
+      }
+  }
+
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+      if let touchLocation = touches.first?.location(in: self), let node = nodes(at: touchLocation).first {
+          if node.name != nil {
+              if node.name == "background" {
+                  background.position = touchLocation
+              }
+          }
+      }
+  }
+
   func createHeart(heart: SKSpriteNode) {
    var heartPosition: CGPoint
    heartPosition = CGPoint(x: Double.random(in: self.frame.minX...self.frame.maxX), y: Double.random(in: self.frame.minY...self.frame.maxY))
