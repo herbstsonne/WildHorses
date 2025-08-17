@@ -12,6 +12,7 @@ struct GameView: View {
 
   @EnvironmentObject var settings: Settings
   @EnvironmentObject var gameState: GameState
+  @Environment(\.dismiss) var dismiss
 
   var scene: SKScene {
     let scene = GameScene(gameState: gameState, settings: settings)
@@ -25,6 +26,9 @@ struct GameView: View {
       .ignoresSafeArea()
       .alert("Congratulations", isPresented: $gameState.won) {
         Text("You got \(gameState.score) points :)")
+        Button("OK") {
+          dismiss()
+        }
       }
   }
 }

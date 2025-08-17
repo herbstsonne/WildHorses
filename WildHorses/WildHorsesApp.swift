@@ -15,7 +15,7 @@ struct WildHorsesApp: App {
 
   var body: some Scene {
     WindowGroup {
-      FirstView()
+      MenuView()
         .environmentObject(settings)
         .environmentObject(gameState)
     }

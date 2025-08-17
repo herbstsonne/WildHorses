@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,12 +14,8 @@
 		CD2A5CB02C8F905500CCD661 /* WildHorsesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CAF2C8F905500CCD661 /* WildHorsesTests.swift */; };
 		CD2A5CBA2C8F905500CCD661 /* WildHorsesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CB92C8F905500CCD661 /* WildHorsesUITests.swift */; };
 		CD2A5CBC2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CBB2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift */; };
-		CD2A5CC92C8F906800CCD661 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CC82C8F906800CCD661 /* FirstView.swift */; };
-		CD2A5CCB2C8F908900CCD661 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CCA2C8F908900CCD661 /* GameScene.swift */; };
 		CD3A48F12E52496200C07DF7 /* AnimatedHorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3A48F02E52494B00C07DF7 /* AnimatedHorse.swift */; };
 		CD3A48F52E526B1B00C07DF7 /* Horse.atlas in Resources */ = {isa = PBXBuildFile; fileRef = CD3A48F42E526B1B00C07DF7 /* Horse.atlas */; };
-		CD3A48F72E5273B400C07DF7 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3A48F62E5273AC00C07DF7 /* GameState.swift */; };
-		CD60C8902C930D2100E0789A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD60C88F2C930D2100E0789A /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,13 +47,15 @@
 		CD2A5CB52C8F905500CCD661 /* WildHorsesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WildHorsesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2A5CB92C8F905500CCD661 /* WildHorsesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesUITests.swift; sourceTree = "<group>"; };
 		CD2A5CBB2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		CD2A5CC82C8F906800CCD661 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
-		CD2A5CCA2C8F908900CCD661 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		CD3A48F02E52494B00C07DF7 /* AnimatedHorse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedHorse.swift; sourceTree = "<group>"; };
 		CD3A48F42E526B1B00C07DF7 /* Horse.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Horse.atlas; sourceTree = "<group>"; };
-		CD3A48F62E5273AC00C07DF7 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
-		CD60C88F2C930D2100E0789A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CD3A48FA2E52818200C07DF7 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		CD3A48FB2E52819300C07DF7 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		CD3A48FC2E5281DA00C07DF7 /* Scenes */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Scenes; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CD2A5C972C8F905300CCD661 /* Frameworks */ = {
@@ -107,16 +105,15 @@
 		CD2A5C9C2C8F905300CCD661 /* WildHorses */ = {
 			isa = PBXGroup;
 			children = (
-				CD3A48F62E5273AC00C07DF7 /* GameState.swift */,
+				CD3A48FC2E5281DA00C07DF7 /* Scenes */,
+				CD3A48FB2E52819300C07DF7 /* Models */,
+				CD3A48FA2E52818200C07DF7 /* Views */,
 				CD3A48F02E52494B00C07DF7 /* AnimatedHorse.swift */,
 				CD2A5C9D2C8F905300CCD661 /* WildHorsesApp.swift */,
 				CD2A5CA12C8F905400CCD661 /* Assets.xcassets */,
 				CD2A5CA32C8F905400CCD661 /* WildHorses.entitlements */,
 				CD2A5CA42C8F905400CCD661 /* Preview Content */,
-				CD2A5CC82C8F906800CCD661 /* FirstView.swift */,
-				CD2A5CCA2C8F908900CCD661 /* GameScene.swift */,
 				CD12169A2C8F970200420E1D /* Extension.swift */,
-				CD60C88F2C930D2100E0789A /* Settings.swift */,
 				CD3A48F42E526B1B00C07DF7 /* Horse.atlas */,
 			);
 			path = WildHorses;
@@ -161,6 +158,11 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CD3A48FA2E52818200C07DF7 /* Views */,
+				CD3A48FB2E52819300C07DF7 /* Models */,
+				CD3A48FC2E5281DA00C07DF7 /* Scenes */,
 			);
 			name = WildHorses;
 			productName = WildHorses;
@@ -278,13 +280,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD3A48F72E5273B400C07DF7 /* GameState.swift in Sources */,
 				CD3A48F12E52496200C07DF7 /* AnimatedHorse.swift in Sources */,
-				CD2A5CC92C8F906800CCD661 /* FirstView.swift in Sources */,
-				CD2A5CCB2C8F908900CCD661 /* GameScene.swift in Sources */,
 				CD2A5C9E2C8F905300CCD661 /* WildHorsesApp.swift in Sources */,
 				CD12169B2C8F970200420E1D /* Extension.swift in Sources */,
-				CD60C8902C930D2100E0789A /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
