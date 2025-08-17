@@ -15,7 +15,7 @@
 		CD2A5CBA2C8F905500CCD661 /* WildHorsesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CB92C8F905500CCD661 /* WildHorsesUITests.swift */; };
 		CD2A5CBC2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CBB2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift */; };
 		CD3A48F12E52496200C07DF7 /* AnimatedHorse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3A48F02E52494B00C07DF7 /* AnimatedHorse.swift */; };
-		CD3A48F52E526B1B00C07DF7 /* Horse.atlas in Resources */ = {isa = PBXBuildFile; fileRef = CD3A48F42E526B1B00C07DF7 /* Horse.atlas */; };
+		CD3A48FE2E5284DF00C07DF7 /* Horse.atlas in Resources */ = {isa = PBXBuildFile; fileRef = CD3A48FD2E5284DF00C07DF7 /* Horse.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,7 @@
 		CD2A5CB92C8F905500CCD661 /* WildHorsesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesUITests.swift; sourceTree = "<group>"; };
 		CD2A5CBB2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CD3A48F02E52494B00C07DF7 /* AnimatedHorse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedHorse.swift; sourceTree = "<group>"; };
-		CD3A48F42E526B1B00C07DF7 /* Horse.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Horse.atlas; sourceTree = "<group>"; };
+		CD3A48FD2E5284DF00C07DF7 /* Horse.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Horse.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -114,7 +114,7 @@
 				CD2A5CA32C8F905400CCD661 /* WildHorses.entitlements */,
 				CD2A5CA42C8F905400CCD661 /* Preview Content */,
 				CD12169A2C8F970200420E1D /* Extension.swift */,
-				CD3A48F42E526B1B00C07DF7 /* Horse.atlas */,
+				CD3A48FD2E5284DF00C07DF7 /* Horse.atlas */,
 			);
 			path = WildHorses;
 			sourceTree = "<group>";
@@ -253,7 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD3A48F52E526B1B00C07DF7 /* Horse.atlas in Resources */,
+				CD3A48FE2E5284DF00C07DF7 /* Horse.atlas in Resources */,
 				CD2A5CA62C8F905400CCD661 /* Preview Assets.xcassets in Resources */,
 				CD2A5CA22C8F905400CCD661 /* Assets.xcassets in Resources */,
 			);

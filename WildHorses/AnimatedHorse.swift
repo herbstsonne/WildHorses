@@ -6,12 +6,14 @@ struct AnimatedHorse {
   var parentNode: SKNode?
 
   private var gameState: GameState
+  private let settings: Settings
   private var horseFrames: [SKTexture] = []
   private let horseAtlas: SKTextureAtlas?
   private let numImages: Int
   
-  init(gameState: GameState) {
+  init(gameState: GameState, settings: Settings) {
     self.gameState = gameState
+    self.settings = settings
     horseAtlas = SKTextureAtlas(named: "Horse")
     numImages = horseAtlas?.textureNames.count ?? 0
   }
@@ -33,7 +35,7 @@ struct AnimatedHorse {
     // Run animation
     horse.run(SKAction.repeatForever(SKAction.animate(with: horseFrames, timePerFrame: 0.1)))
     // Move across screen
-    let moveAction = SKAction.moveTo(x: -100, duration: 20)
+    let moveAction = SKAction.moveTo(x: -100, duration: settings.speed)
     horse.run(moveAction)
   }
   
@@ -46,7 +48,7 @@ struct AnimatedHorse {
           $0 == horse
         })
         {
-          print("hit")
+          print("Catched a horse")
           horse.removeFromParent()
           gameState.score += 1
           pointsLabel.text = "Points: \(gameState.score)"

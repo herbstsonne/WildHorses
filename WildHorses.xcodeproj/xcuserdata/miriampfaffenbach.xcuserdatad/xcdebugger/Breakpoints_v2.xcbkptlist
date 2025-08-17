@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E67AC337-ADE5-4EB3-84C2-1B1BD3680402"
+            uuid = "1B182DE7-9F82-42B4-BDB2-E036B1C3D0CF"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WildHorses/GameScene.swift"
+            filePath = "WildHorses/AnimatedHorse.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "update(_:for:)"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "init(gameState:settings:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9CF2C627-F547-4CA2-8084-296C75940AEF"
+            uuid = "BCBD0327-FD96-4A32-AC69-95D85D5BD04A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WildHorses/GameScene.swift"
+            filePath = "WildHorses/AnimatedHorse.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "touchesBegan(_:with:)"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "run(startPosition:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
