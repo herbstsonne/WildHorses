@@ -9,12 +9,12 @@ import SwiftUI
 import SpriteKit
 
 struct FirstView: View {
-  
-  @State private var youWon = false
+
   @EnvironmentObject var settings: Settings
+  @EnvironmentObject var gameState: GameState
 
   var scene: SKScene {
-    let scene = GameScene(score: $settings.score, showSuccess: $youWon)
+    let scene = GameScene(gameState: gameState, settings: settings)
     scene.size = CGSize(width: 650, height: 300)
     scene.scaleMode = .fill
     return scene
@@ -23,12 +23,14 @@ struct FirstView: View {
   var body: some View {
     SpriteView(scene: scene)
       .ignoresSafeArea()
-      .alert("Congratulations", isPresented: $youWon) {
-        Text("You got \(settings.score) points :)")
+      .alert("Congratulations", isPresented: $gameState.won) {
+        Text("You got \(gameState.score) points :)")
       }
   }
 }
 
 #Preview {
     FirstView()
+    .environmentObject(Settings())
+    .environmentObject(GameState())
 }

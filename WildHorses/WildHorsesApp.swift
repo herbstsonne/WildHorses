@@ -11,11 +11,13 @@ import SwiftUI
 struct WildHorsesApp: App {
   
   @StateObject private var settings = Settings()
+  @StateObject private var gameState = GameState()
 
   var body: some Scene {
     WindowGroup {
       FirstView()
         .environmentObject(settings)
+        .environmentObject(gameState)
     }
   }
 }

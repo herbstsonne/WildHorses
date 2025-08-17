@@ -9,5 +9,6 @@ import SwiftUI
 
 class Settings: ObservableObject {
     
-    @Published var score: Int = 0
+  @Published var numberOfHorses: Int = 3
+  @Published var playerName: String = "Nina"
 }

@@ -10,26 +10,22 @@ import SpriteKit
 import SwiftUI
 
 class GameScene: SKScene {
-  
-  @Binding var score: Int
-  @Binding var showSuccess: Bool
+
+  var gameState: GameState
+  var settings: Settings
 
   var background = SKSpriteNode(imageNamed: "horsesrunningbeach_2")
   var pointsLabel = SKLabelNode()
   let box = SKSpriteNode(texture: SKTexture(imageNamed: "nina"), color: .blue, size: CGSize(width: 50, height: 50))
-  let hearts = [
-    SKSpriteNode(texture: SKTexture(imageNamed: "wild_horse"), color: .blue, size: CGSize(width: 50, height: 50)),
-    SKSpriteNode(texture: SKTexture(imageNamed: "wild_horse"), color: .blue, size: CGSize(width: 50, height: 50)),
-    SKSpriteNode(texture: SKTexture(imageNamed: "wild_horse"), color: .blue, size: CGSize(width: 50, height: 50)),
-    SKSpriteNode(texture: SKTexture(imageNamed: "wild_horse"), color: .blue, size: CGSize(width: 50, height: 50)),
-    SKSpriteNode(texture: SKTexture(imageNamed: "wild_horse"), color: .blue, size: CGSize(width: 50, height: 50))
-  ]
+  var horseAnimation: AnimatedHorse
 
-  init(score: Binding<Int>, showSuccess: Binding<Bool>) {
-    _score = score
-    _showSuccess = showSuccess
+  init(gameState: GameState, settings: Settings) {
+    self.gameState = gameState
+    self.settings = settings
+    horseAnimation = AnimatedHorse(gameState: gameState)
     super.init(size: CGSize(width: 300, height: 400))
     self.scaleMode = .fill
+    horseAnimation.parentNode = self
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -46,17 +42,17 @@ class GameScene: SKScene {
     
     pointsLabel.position = CGPoint(x:self.frame.maxX - 60, y:self.frame.maxY - 50);
     pointsLabel.color = .gray
-    pointsLabel.text = "Points: \(score)"
+    pointsLabel.text = "Points: \(gameState.score)"
     addChild(pointsLabel)
     
     box.position = CGPoint(x:self.frame.midX, y:self.frame.minY + 20);
     box.name = "box"
     box.zPosition = 2
     addChild(box)
-    
-    for heart in hearts {
-      createHeart(heart: heart)
-    }
+
+    horseAnimation.run(startPosition: CGPoint(x: 700, y: 50))
+    horseAnimation.run(startPosition: CGPoint(x: 700, y: 150))
+    horseAnimation.run(startPosition: CGPoint(x: 700, y: 250))
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -67,24 +63,12 @@ class GameScene: SKScene {
     let moveAction = SKAction.move(to: touchLocation, duration: 1)
     childNode(withName: "box")?.run(moveAction)
     
-    for heart in hearts {
-      if heart.contains(touchLocation) {
-        if self.children.contains(where: {
-          $0 == heart
-        })
-        {
-          print("hit")
-          heart.removeFromParent()
-          score += 1
-          pointsLabel.text = "Points: \(score)"
-        }
-      }
-    }
+    horseAnimation.caught(touchLocation: touchLocation, pointsLabel: pointsLabel)
     
     if !self.children.contains(where: {
-      $0.name == "heart"
+      $0.name == "horse"
     }) {
-      showSuccess.toggle()
+      gameState.won.toggle()
     }
   }
       
