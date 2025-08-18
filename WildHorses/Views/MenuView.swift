@@ -52,7 +52,7 @@ extension MenuView {
   
   private func settingsView() -> some View {
     VStack(alignment: .leading) {
-      Text("Pferdespiele für Ninchen")
+      Text("Pferdespiele für mein Spätzchen")
         .font(.largeTitle)
         .padding(.top, 24)
       TextField("Spielername:", text: $settings.playerName)

@@ -13,8 +13,6 @@ class GameCatchHorsesScene: SKScene {
 
   var gameState: GameState
   var settings: Settings
-
-  var background = SKSpriteNode(imageNamed: "prairie")
   var pointsLabel = SKLabelNode()
   let player = SKSpriteNode(texture: SKTexture(imageNamed: "girl_front"), color: .blue, size: CGSize(width: 50, height: 50))
   var playerAnimation: AnimatedGirl
@@ -26,7 +24,7 @@ class GameCatchHorsesScene: SKScene {
     horseAnimation = AnimatedHorse(gameState: gameState, settings: settings)
     playerAnimation = AnimatedGirl(gameState: gameState, settings: settings)
     super.init(size: CGSize(width: 300, height: 400))
-    self.scaleMode = .fill
+    //self.scaleMode = .fill
     horseAnimation.parentNode = self
     playerAnimation.parentNode = self
   }
@@ -35,13 +33,50 @@ class GameCatchHorsesScene: SKScene {
     fatalError("init(coder:) has not been implemented")
   }
 
+  func setupBackground() {
+    for i in 0...1 {
+      let bg = SKSpriteNode(imageNamed: "prairie")
+      bg.anchorPoint = .zero
+      bg.position = CGPoint(x: CGFloat(i) * bg.size.width, y: 0)
+      bg.size = self.size
+      bg.zPosition = -1
+      bg.name = "background"
+      
+      bg.texture?.filteringMode = .nearest
+      addChild(bg)
+    }
+  }
+
+  override func update(_ currentTime: TimeInterval) {
+      guard let camera = self.camera else { return }
+      
+      enumerateChildNodes(withName: "background") { node, _ in
+          if let bg = node as? SKSpriteNode {
+              
+              // Loop to the right
+              if bg.position.x + bg.size.width < camera.position.x - self.size.width / 2 {
+                  bg.position.x += bg.size.width * 2 - 1
+              }
+              
+              // Loop to the left
+              if bg.position.x > camera.position.x + self.size.width / 2 {
+                  bg.position.x -= bg.size.width * 2 - 1
+              }
+          }
+      }
+  }
+
   override func didMove(to view: SKView) {
     //physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
 
-    background.zPosition = 0
-    background.position = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
-    background.size = CGSize(width: self.size.width, height: self.size.height)
-    addChild(background)
+    self.size = view.bounds.size
+    
+    setupBackground()
+    
+    let cameraNode = SKCameraNode()
+    cameraNode.position = CGPoint(x: size.width / 2, y: size.height / 2)
+    self.camera = cameraNode
+    addChild(cameraNode)
     
     pointsLabel.position = CGPoint(x:self.frame.maxX - 60, y:self.frame.maxY - 50);
     pointsLabel.color = .gray
@@ -56,6 +91,11 @@ class GameCatchHorsesScene: SKScene {
     for _ in 0..<settings.numberOfHorses {
       horseAnimation.run(startPosition: CGPoint(x: 700, y: Double.random(in: self.frame.minY + 50...self.frame.maxY - 170)))
     }
+  }
+
+  override func didSimulatePhysics() {
+    camera?.position.x = player.position.x
+    camera?.position.y = size.height / 2 // keep vertical center fixed
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,23 +124,9 @@ class GameCatchHorsesScene: SKScene {
       let touchLocation = touch.location(in: self)
       playerAnimation.calculateAnimation(startPosition: CGPoint(x:self.frame.midX, y:self.frame.minY + 20), targetPosition: touchLocation)
     }
-
-    if let touchLocation = touches.first?.location(in: self), let node = nodes(at: touchLocation).first {
-      if node.name != nil {
-        if node.name == "background" {
-            background.position = touchLocation
-        }
-      }
-    }
   }
 
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-      if let touchLocation = touches.first?.location(in: self), let node = nodes(at: touchLocation).first {
-          if node.name != nil {
-              if node.name == "background" {
-                  background.position = touchLocation
-              }
-          }
-      }
+      
   }
 }

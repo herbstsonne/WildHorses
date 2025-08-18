@@ -24,7 +24,7 @@ struct AnimatedGirl {
   
   mutating func run(startPosition: CGPoint, targetPosition: CGPoint) {
     let girl = parentNode?.childNode(withName: "player")
-    let moveAction = SKAction.move(to: targetPosition, duration: settings.speed)
+    let moveAction = SKAction.move(to: targetPosition, duration: settings.speed / 2)
     girl?.run(moveAction)
   }
   

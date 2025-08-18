@@ -35,8 +35,9 @@ struct AnimatedHorse {
     // Run animation
     horse.run(SKAction.repeatForever(SKAction.animate(with: horseFrames, timePerFrame: 0.1)))
     // Move across screen
-    let moveAction = SKAction.moveTo(x: -100, duration: settings.speed)
-    horse.run(moveAction)
+    let moveAction = SKAction.moveBy(x: -1000, y: 0, duration: settings.speed)
+    let repeatForever = SKAction.repeatForever(moveAction)
+    horse.run(repeatForever)
   }
   
   func caught(touchLocation: CGPoint, pointsLabel: SKLabelNode) {
