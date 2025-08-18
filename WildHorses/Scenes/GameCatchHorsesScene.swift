@@ -9,23 +9,26 @@ import Foundation
 import SpriteKit
 import SwiftUI
 
-class GameScene: SKScene {
+class GameCatchHorsesScene: SKScene {
 
   var gameState: GameState
   var settings: Settings
 
-  var background = SKSpriteNode(imageNamed: "horsesrunningbeach_2")
+  var background = SKSpriteNode(imageNamed: "prairie")
   var pointsLabel = SKLabelNode()
-  let player = SKSpriteNode(texture: SKTexture(imageNamed: "nina"), color: .blue, size: CGSize(width: 50, height: 50))
+  let player = SKSpriteNode(texture: SKTexture(imageNamed: "girl_front"), color: .blue, size: CGSize(width: 50, height: 50))
+  var playerAnimation: AnimatedGirl
   var horseAnimation: AnimatedHorse
 
   init(gameState: GameState, settings: Settings) {
     self.gameState = gameState
     self.settings = settings
     horseAnimation = AnimatedHorse(gameState: gameState, settings: settings)
+    playerAnimation = AnimatedGirl(gameState: gameState, settings: settings)
     super.init(size: CGSize(width: 300, height: 400))
     self.scaleMode = .fill
     horseAnimation.parentNode = self
+    playerAnimation.parentNode = self
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -44,14 +47,14 @@ class GameScene: SKScene {
     pointsLabel.color = .gray
     pointsLabel.text = "Points: \(gameState.score)"
     addChild(pointsLabel)
-    
+
     player.position = CGPoint(x:self.frame.midX, y:self.frame.minY + 20);
     player.name = "player"
     player.zPosition = 2
     addChild(player)
 
     for _ in 0..<settings.numberOfHorses {
-      horseAnimation.run(startPosition: CGPoint(x: 700, y: Double.random(in: self.frame.minY + 50...self.frame.maxY - 50)))
+      horseAnimation.run(startPosition: CGPoint(x: 700, y: Double.random(in: self.frame.minY + 50...self.frame.maxY - 170)))
     }
   }
 
@@ -60,8 +63,9 @@ class GameScene: SKScene {
     //let spin = SKAction.rotate(byAngle: CGFloat(Double.pi/4.0), duration: 1)
 
     let touchLocation = touch.location(in: self)
-    let moveAction = SKAction.move(to: touchLocation, duration: 1)
-    childNode(withName: "player")?.run(moveAction)
+    
+    playerAnimation.calculateAnimation(startPosition: CGPoint(x:self.frame.midX, y:self.frame.minY + 20), targetPosition: touchLocation)
+    playerAnimation.run(startPosition: CGPoint(x:self.frame.midX, y:self.frame.minY + 20), targetPosition: touchLocation)
     
     horseAnimation.caught(touchLocation: touchLocation, pointsLabel: pointsLabel)
     
@@ -71,15 +75,23 @@ class GameScene: SKScene {
       gameState.won.toggle()
     }
   }
-      
+  
+  // is called whenever:
+  // A finger touches down on the screen (inside your scene),
+  // And then that same finger moves while still touching the screen.
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-      if let touchLocation = touches.first?.location(in: self), let node = nodes(at: touchLocation).first {
-          if node.name != nil {
-              if node.name == "background" {
-                  background.position = touchLocation
-              }
-          }
+    for touch in touches {
+      let touchLocation = touch.location(in: self)
+      playerAnimation.calculateAnimation(startPosition: CGPoint(x:self.frame.midX, y:self.frame.minY + 20), targetPosition: touchLocation)
+    }
+
+    if let touchLocation = touches.first?.location(in: self), let node = nodes(at: touchLocation).first {
+      if node.name != nil {
+        if node.name == "background" {
+            background.position = touchLocation
+        }
       }
+    }
   }
 
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

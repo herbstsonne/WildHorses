@@ -8,14 +8,14 @@
 import SwiftUI
 import SpriteKit
 
-struct GameView: View {
+struct CatchHorsesView: View {
 
   @EnvironmentObject var settings: Settings
   @EnvironmentObject var gameState: GameState
   @Environment(\.dismiss) var dismiss
 
   var scene: SKScene {
-    let scene = GameScene(gameState: gameState, settings: settings)
+    let scene = GameCatchHorsesScene(gameState: gameState, settings: settings)
     scene.size = CGSize(width: 650, height: 300)
     scene.scaleMode = .fill
     return scene
@@ -24,8 +24,8 @@ struct GameView: View {
   var body: some View {
     SpriteView(scene: scene)
       .ignoresSafeArea()
-      .alert("Congratulations", isPresented: $gameState.won) {
-        Text("You got \(gameState.score) points :)")
+      .alert("Super gemacht!", isPresented: $gameState.won) {
+        Text("Du hast \(gameState.score) Punkte gesammelt :)")
         Button("OK") {
           dismiss()
         }
@@ -34,7 +34,7 @@ struct GameView: View {
 }
 
 #Preview {
-    GameView()
+    CatchHorsesView()
     .environmentObject(Settings())
     .environmentObject(GameState())
 }
