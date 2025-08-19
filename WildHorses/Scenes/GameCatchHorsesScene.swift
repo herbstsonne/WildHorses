@@ -37,7 +37,7 @@ class GameCatchHorsesScene: SKScene {
     for i in 0...1 {
       let bg = SKSpriteNode(imageNamed: "prairie")
       bg.anchorPoint = .zero
-      bg.position = CGPoint(x: CGFloat(i) * bg.size.width, y: 0)
+      bg.position = CGPoint(x: CGFloat(i) * self.size.width, y: 0)
       bg.size = self.size
       bg.zPosition = -1
       bg.name = "background"
@@ -51,23 +51,22 @@ class GameCatchHorsesScene: SKScene {
       guard let camera = self.camera else { return }
       
       enumerateChildNodes(withName: "background") { node, _ in
-          if let bg = node as? SKSpriteNode {
+        if let bg = node as? SKSpriteNode {
               
-              // Loop to the right
-              if bg.position.x + bg.size.width < camera.position.x - self.size.width / 2 {
-                  bg.position.x += bg.size.width * 2 - 1
-              }
-              
-              // Loop to the left
-              if bg.position.x > camera.position.x + self.size.width / 2 {
-                  bg.position.x -= bg.size.width * 2 - 1
-              }
-          }
+        // Loop to the right
+        if bg.position.x + bg.size.width < camera.position.x - self.size.width / 2 {
+          bg.position.x += bg.size.width * 2 - 1
+        }
+          
+        // Loop to the left
+        if bg.position.x > camera.position.x + self.size.width / 2 {
+            bg.position.x -= bg.size.width * 2 - 1
+        }
       }
+    }
   }
 
   override func didMove(to view: SKView) {
-    //physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
 
     self.size = view.bounds.size
     
@@ -77,11 +76,16 @@ class GameCatchHorsesScene: SKScene {
     cameraNode.position = CGPoint(x: size.width / 2, y: size.height / 2)
     self.camera = cameraNode
     addChild(cameraNode)
-    
-    pointsLabel.position = CGPoint(x:self.frame.maxX - 60, y:self.frame.maxY - 50);
+
     pointsLabel.color = .gray
     pointsLabel.text = "Points: \(gameState.score)"
-    addChild(pointsLabel)
+    pointsLabel.horizontalAlignmentMode = .right
+    pointsLabel.verticalAlignmentMode = .top
+    
+    if let scene = self.scene {
+      pointsLabel.position = CGPoint(x: scene.size.width/2 - 60, y: scene.size.height/2 - 50);
+    }
+    cameraNode.addChild(pointsLabel)
 
     player.position = CGPoint(x:self.frame.midX, y:self.frame.minY + 20);
     player.name = "player"
@@ -100,7 +104,6 @@ class GameCatchHorsesScene: SKScene {
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     guard let touch = touches.first else { return }
-    //let spin = SKAction.rotate(byAngle: CGFloat(Double.pi/4.0), duration: 1)
 
     let touchLocation = touch.location(in: self)
     
