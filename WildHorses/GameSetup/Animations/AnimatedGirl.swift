@@ -46,10 +46,10 @@ struct AnimatedGirl {
 
     let directionX: CGFloat = targetPosition.x > startPosition.x ? 1 : -1
     let directionY: CGFloat = targetPosition.y > startPosition.y ? 1 : -1
-    let perspective = directionX == 1 ? "front" : "back"
+    let perspective = directionX == 1 ? "right" : "left"
     let textureNameX = "girl_\(perspective)"
     girlFrames.append(girlAtlas.textureNamed(textureNameX))
-    let perspectiveY = directionY == 1 ? "right" : "left"
+    let perspectiveY = directionY == 1 ? "back" : "front"
     let textureNameY = "girl_\(perspectiveY)"
     girlFrames.append(girlAtlas.textureNamed(textureNameY))
 

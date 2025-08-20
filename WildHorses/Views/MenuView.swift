@@ -17,7 +17,7 @@ struct MenuView: View {
   @State private var navigationPath: [RouteViews] = []
   
   var body: some View {
-    NavigationStack {
+    NavigationStack(path: $navigationPath) {
       VStack {
         if verticalSizeClass == .regular {
           HStack {
@@ -45,6 +45,12 @@ struct MenuView: View {
       .onAppear {
         gameState.score = 0
       }
+      .navigationDestination(for: RouteViews.self) { route in
+        switch route {
+        case .catchHorses:
+          CatchHorsesView()
+        }
+      }
     }
   }
 }
@@ -65,12 +71,6 @@ extension MenuView {
       }
       Button("Spiele Wildpferde fangen!") {
         navigationPath.append(.catchHorses)
-      }
-    }
-    .navigationDestination(for: RouteViews.self) { route in
-      switch route {
-      case .catchHorses:
-        CatchHorsesView()
       }
     }
   }
