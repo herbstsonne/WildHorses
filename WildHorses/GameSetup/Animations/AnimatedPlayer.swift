@@ -7,7 +7,13 @@
 
 import SpriteKit
 
-struct AnimatedGirl {
+protocol PlayerAnimatable {
+  func setup(playerNode: SKSpriteNode)
+  mutating func run(startPosition: CGPoint, targetPosition: CGPoint)
+  mutating func calculateAnimation(startPosition: CGPoint, targetPosition: CGPoint)
+}
+
+struct AnimatedPlayer: PlayerAnimatable {
   
   private var gameState: GameState
   private let settings: Settings

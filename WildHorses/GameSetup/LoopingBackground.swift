@@ -7,7 +7,14 @@
 
 import SpriteKit
 
-struct LoopingBackground {
+protocol BackgroundLoopable {
+  var scene: SKScene { get }
+  
+  func setupBackground()
+  func loop(camera: SKCameraNode)
+}
+
+struct LoopingBackground: BackgroundLoopable {
   
   let scene: SKScene
 

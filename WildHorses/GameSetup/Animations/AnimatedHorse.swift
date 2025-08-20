@@ -1,6 +1,14 @@
 import SpriteKit
 
-struct AnimatedHorse {
+protocol HorseAnimatable {
+  var horses: [SKSpriteNode] { get set }
+  
+  mutating func setup()
+  mutating func run(startPosition: CGPoint)
+  func caught(touchLocation: CGPoint, pointsLabel: SKLabelNode)
+}
+
+struct AnimatedHorse: HorseAnimatable {
   
   var horses: [SKSpriteNode] = []
 

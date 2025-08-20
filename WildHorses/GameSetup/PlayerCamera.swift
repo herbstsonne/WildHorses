@@ -7,7 +7,13 @@
 
 import SpriteKit
 
-struct PlayerCamera {
+protocol CameraControllable {
+  func setup()
+  func add(scoreLabel: SKLabelNode, gameState: GameState)
+  func alignWithPlayer(playerNode: SKSpriteNode)
+}
+
+struct PlayerCamera: CameraControllable {
   
   private let scene: SKScene
   private let cameraNode: SKCameraNode

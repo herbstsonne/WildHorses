@@ -19,7 +19,7 @@ class GameCatchHorsesScene: SKScene {
 
   var playerCamera: PlayerCamera?
   var loopingBackground: LoopingBackground?
-  var playerAnimation: AnimatedGirl?
+  var playerAnimation: AnimatedPlayer?
   var horseAnimation: AnimatedHorse?
 
   init(gameState: GameState, settings: Settings) {
@@ -33,7 +33,7 @@ class GameCatchHorsesScene: SKScene {
     playerCamera = PlayerCamera(scene: self)
     loopingBackground = LoopingBackground(scene: self)
     horseAnimation = AnimatedHorse(scene: self, gameState: gameState, settings: settings)
-    playerAnimation = AnimatedGirl(scene: self, gameState: gameState, settings: settings)
+    playerAnimation = AnimatedPlayer(scene: self, gameState: gameState, settings: settings)
   }
   
   required init?(coder aDecoder: NSCoder) {
