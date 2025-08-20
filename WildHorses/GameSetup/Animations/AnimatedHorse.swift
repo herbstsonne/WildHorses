@@ -23,7 +23,7 @@ struct AnimatedHorse {
     guard let parentNode = parentNode else { return }
 
     for _ in 0..<settings.numberOfHorses {
-      run(startPosition: CGPoint(x: 700, y: Double.random(in: parentNode.frame.minY + 50...parentNode.frame.maxY - 170)))
+      run(startPosition: CGPoint(x: 700, y: Double.random(in: parentNode.frame.minY + 50...parentNode.frame.maxY - 200)))
     }
   }
 

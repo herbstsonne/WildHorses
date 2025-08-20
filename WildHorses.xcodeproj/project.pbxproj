@@ -56,6 +56,7 @@
 		CD3A48FB2E52819300C07DF7 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		CD3A48FC2E5281DA00C07DF7 /* Scenes */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Scenes; sourceTree = "<group>"; };
 		CD3A49072E5543AF00C07DF7 /* GameSetup */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GameSetup; sourceTree = "<group>"; };
+		CD3A49102E554CF000C07DF7 /* Navigation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Navigation; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +107,7 @@
 		CD2A5C9C2C8F905300CCD661 /* WildHorses */ = {
 			isa = PBXGroup;
 			children = (
+				CD3A49102E554CF000C07DF7 /* Navigation */,
 				CD3A49072E5543AF00C07DF7 /* GameSetup */,
 				CD3A48FC2E5281DA00C07DF7 /* Scenes */,
 				CD3A48FB2E52819300C07DF7 /* Models */,
@@ -166,6 +168,7 @@
 				CD3A48FB2E52819300C07DF7 /* Models */,
 				CD3A48FC2E5281DA00C07DF7 /* Scenes */,
 				CD3A49072E5543AF00C07DF7 /* GameSetup */,
+				CD3A49102E554CF000C07DF7 /* Navigation */,
 			);
 			name = WildHorses;
 			productName = WildHorses;

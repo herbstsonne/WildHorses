@@ -52,8 +52,7 @@ class GameCatchHorsesScene: SKScene {
   }
 
   override func didSimulatePhysics() {
-    camera?.position.x = playerNode.position.x
-    camera?.position.y = size.height / 2 // keep vertical center fixed
+    playerCamera?.alignWithPlayer(playerNode: playerNode)
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -73,7 +72,7 @@ class GameCatchHorsesScene: SKScene {
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
     for touch in touches {
       let touchLocation = touch.location(in: self)
-      playerAnimation?.calculateAnimation(startPosition: CGPoint(x:self.frame.midX, y:self.frame.minY + 20), targetPosition: touchLocation)
+      playerAnimation?.calculateAnimation(startPosition: CGPoint(x: self.frame.midX, y: self.frame.minY + 20), targetPosition: touchLocation)
     }
   }
 

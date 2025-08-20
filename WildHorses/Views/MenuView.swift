@@ -14,6 +14,7 @@ struct MenuView: View {
   @EnvironmentObject var gameState: GameState
   @Environment(\.verticalSizeClass) var verticalSizeClass
   @State private var startGameCatchHorses = false
+  @State private var navigationPath: [RouteViews] = []
   
   var body: some View {
     NavigationStack {
@@ -57,11 +58,20 @@ extension MenuView {
         .padding(.top, 24)
       TextField("Spielername:", text: $settings.playerName)
       Stepper("Anzahl Pferde: \(settings.numberOfHorses)", value: $settings.numberOfHorses, in: 1...10)
+        .padding(.trailing, 200)
       HStack {
         Text("Geschwindigkeit: \(UInt(51 - settings.speed))")
         Slider(value: $settings.speed, in: 1...50, step: 1)
       }
-      NavigationLink("Spiele Wildpferde fangen!", destination: CatchHorsesView(), isActive: $startGameCatchHorses)
+      Button("Spiele Wildpferde fangen!") {
+        navigationPath.append(.catchHorses)
+      }
+    }
+    .navigationDestination(for: RouteViews.self) { route in
+      switch route {
+      case .catchHorses:
+        CatchHorsesView()
+      }
     }
   }
 }

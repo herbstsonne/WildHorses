@@ -33,4 +33,9 @@ struct PlayerCamera {
     
     cameraNode.addChild(scoreLabel)
   }
+  
+  func alignWithPlayer(playerNode: SKSpriteNode) {
+    cameraNode.position.x = playerNode.position.x
+    cameraNode.position.y = scene.size.height / 2
+  }
 }
