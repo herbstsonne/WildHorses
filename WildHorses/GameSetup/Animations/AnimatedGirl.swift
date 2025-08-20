@@ -16,12 +16,22 @@ struct AnimatedGirl {
   private var girlFrames: [SKTexture] = []
   private let girlAtlas: SKTextureAtlas?
   
-  init(gameState: GameState, settings: Settings) {
+  init(scene: SKScene, gameState: GameState, settings: Settings) {
     self.gameState = gameState
     self.settings = settings
+    self.parentNode = scene
     girlAtlas = SKTextureAtlas(named: "Girl")
   }
   
+  func setup(playerNode: SKSpriteNode) {
+    guard let parentNode = parentNode else { return }
+
+    playerNode.position = CGPoint(x: parentNode.frame.midX, y: parentNode.frame.minY + 20);
+    playerNode.name = "player"
+    playerNode.zPosition = 2
+    parentNode.addChild(playerNode)
+  }
+
   mutating func run(startPosition: CGPoint, targetPosition: CGPoint) {
     let girl = parentNode?.childNode(withName: "player")
     let moveAction = SKAction.move(to: targetPosition, duration: settings.speed / 2)

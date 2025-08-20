@@ -11,13 +11,22 @@ struct AnimatedHorse {
   private let horseAtlas: SKTextureAtlas?
   private let numImages: Int
   
-  init(gameState: GameState, settings: Settings) {
+  init(scene: SKScene, gameState: GameState, settings: Settings) {
     self.gameState = gameState
     self.settings = settings
+    self.parentNode = scene
     horseAtlas = SKTextureAtlas(named: "Horse")
     numImages = horseAtlas?.textureNames.count ?? 0
   }
   
+  mutating func setup() {
+    guard let parentNode = parentNode else { return }
+
+    for _ in 0..<settings.numberOfHorses {
+      run(startPosition: CGPoint(x: 700, y: Double.random(in: parentNode.frame.minY + 50...parentNode.frame.maxY - 170)))
+    }
+  }
+
   mutating func run(startPosition: CGPoint) {
     guard let horseAtlas = horseAtlas else { return }
     for i in 0...numImages - 1 {
