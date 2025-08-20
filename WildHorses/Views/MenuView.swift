@@ -10,11 +10,12 @@ import SpriteKit
 
 struct MenuView: View {
 
-  @EnvironmentObject var settings: Settings
-  @EnvironmentObject var gameState: GameState
-  @Environment(\.verticalSizeClass) var verticalSizeClass
+  @EnvironmentObject private var settings: Settings
+  @EnvironmentObject private var gameState: GameState
+  @Environment(\.verticalSizeClass) private var verticalSizeClass
   @State private var startGameCatchHorses = false
   @State private var navigationPath: [RouteViews] = []
+  @State private var enableButton: Bool = false
   
   var body: some View {
     NavigationStack(path: $navigationPath) {
@@ -45,6 +46,13 @@ struct MenuView: View {
       .onAppear {
         gameState.score = 0
       }
+      .onChange(of: settings.playerName) {
+        if settings.playerName.isEmpty {
+          enableButton = false
+        } else {
+          enableButton = true
+        }
+      }
       .navigationDestination(for: RouteViews.self) { route in
         switch route {
         case .catchHorses:
@@ -64,7 +72,7 @@ extension MenuView {
         .padding(.top, 24)
       TextField("Spielername:", text: $settings.playerName)
       Stepper("Anzahl Pferde: \(settings.numberOfHorses)", value: $settings.numberOfHorses, in: 1...10)
-        .padding(.trailing, 200)
+        .padding(.trailing, 20)
       HStack {
         Text("Geschwindigkeit: \(UInt(51 - settings.speed))")
         Slider(value: $settings.speed, in: 1...50, step: 1)
@@ -72,6 +80,7 @@ extension MenuView {
       Button("Spiele Wildpferde fangen!") {
         navigationPath.append(.catchHorses)
       }
+      .disabled(!enableButton)
     }
   }
 }

@@ -3,10 +3,10 @@ import SpriteKit
 struct AnimatedHorse {
   
   var horses: [SKSpriteNode] = []
-  var parentNode: SKNode?
 
   private var gameState: GameState
   private let settings: Settings
+  private var scene: SKNode?
   private var horseFrames: [SKTexture] = []
   private let horseAtlas: SKTextureAtlas?
   private let numImages: Int
@@ -14,13 +14,13 @@ struct AnimatedHorse {
   init(scene: SKScene, gameState: GameState, settings: Settings) {
     self.gameState = gameState
     self.settings = settings
-    self.parentNode = scene
+    self.scene = scene
     horseAtlas = SKTextureAtlas(named: "Horse")
     numImages = horseAtlas?.textureNames.count ?? 0
   }
   
   mutating func setup() {
-    guard let parentNode = parentNode else { return }
+    guard let parentNode = scene else { return }
 
     for _ in 0..<settings.numberOfHorses {
       run(startPosition: CGPoint(x: 700, y: Double.random(in: parentNode.frame.minY + 50...parentNode.frame.maxY - 200)))
@@ -39,7 +39,7 @@ struct AnimatedHorse {
     horse.position = startPosition
     horse.name = "horse"
     horses.append(horse)
-    parentNode?.addChild(horse)
+    scene?.addChild(horse)
     
     // Run animation
     horse.run(SKAction.repeatForever(SKAction.animate(with: horseFrames, timePerFrame: 0.1)))
@@ -50,7 +50,7 @@ struct AnimatedHorse {
   }
   
   func caught(touchLocation: CGPoint, pointsLabel: SKLabelNode) {
-    guard let parentNode = parentNode else { return }
+    guard let parentNode = scene else { return }
 
     for horse in horses {
       if horse.contains(touchLocation) {

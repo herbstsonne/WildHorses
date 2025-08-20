@@ -10,9 +10,10 @@ import SpriteKit
 
 struct CatchHorsesView: View {
 
-  @EnvironmentObject var settings: Settings
-  @EnvironmentObject var gameState: GameState
-  @Environment(\.dismiss) var dismiss
+  @EnvironmentObject private var settings: Settings
+  @EnvironmentObject private var gameState: GameState
+  @Environment(\.dismiss) private var dismiss
+  @Environment(\.verticalSizeClass) private var verticalSizeClass
 
   var scene: SKScene {
     let scene = GameCatchHorsesScene(gameState: gameState, settings: settings)
@@ -22,14 +23,19 @@ struct CatchHorsesView: View {
   }
   
   var body: some View {
-    SpriteView(scene: scene)
-      .ignoresSafeArea()
-      .alert("Super gemacht!", isPresented: $gameState.won) {
-        Text("Du hast \(gameState.score) Punkte gesammelt :)")
-        Button("OK") {
-          dismiss()
+    if verticalSizeClass == .compact {
+      SpriteView(scene: scene)
+        .ignoresSafeArea()
+        .alert("Super gemacht, \(settings.playerName)!", isPresented: $gameState.won) {
+          Text("Du hast \(gameState.score) Punkte gesammelt :)")
+          Button("OK") {
+            dismiss()
+          }
         }
-      }
+    }
+    else {
+      Text("Halte die App quer, um das Game zu spielen.")
+    }
   }
 }
 
