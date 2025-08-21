@@ -8,20 +8,25 @@
 @testable import WildHorses
 import Testing
 import SwiftUI
+import SpriteKit
 
 @Suite("WildHorsesTests")
 final class WildHorsesTests {
 
   @Test("AnimatedHorse")
-  func test_animatedHorse_allHorsesAppended() throws {
+  func test_animatedHorse_allHorsesAppended() {
     
     let scene: SceneNodeProtocol = MockScene()
-    let horseNode: SpriteNodeProtocol
     let gameState: GameState = GameState()
     let settings: Settings = Settings()
-    var animatedHorse: HorseAnimatable = AnimatedHorse(scene: scene, horseNode: horseNode, gameState: gameState, settings: settings)
-    animatedHorse.setup()
-    
+    var animatedHorse: HorseAnimatable = AnimatedHorse(scene: scene, gameState: gameState, settings: settings)
+    do {
+      try animatedHorse.setup(horseNodes: [SKSpriteNode(), SKSpriteNode(), SKSpriteNode()])
+    } catch {
+      print(error)
+      return
+    }
+
     #expect(animatedHorse.horses.count == 3)
   }
 }

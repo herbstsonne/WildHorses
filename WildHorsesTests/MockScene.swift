@@ -9,7 +9,7 @@ import WildHorses
 import SpriteKit
 
 class MockScene: SceneNodeProtocol {
-  
+
   var removeActionWasCalled: Bool = false
   var enumerateChildNodesWasCalled: Bool = false
 
@@ -19,24 +19,18 @@ class MockScene: SceneNodeProtocol {
   
   var camera: SKCameraNode?
   
-  var children: [SpriteNodeProtocol] = []
+  var children: [SKNode] = []
   
   init() {
     frame = CGRect(x: 1000, y: 500, width: 1000, height: 500)
     size = .zero
   }
 
-  func addChild(_ node: any SpriteNodeProtocol) {
-    let mockNode = MockSpriteNode()
-    children.append(mockNode)
+  func addChild(_ node: SKNode) {
+    children.append(node)
   }
   
-  func addChild(_ node: any CameraNodeProtocol) {
-    //TODO: cameraMockNode
-    
-  }
-  
-  func childNode(withName name: String) -> SpriteNodeProtocol? {
+  func childNode(withName name: String) -> SKNode? {
     return children.first { $0.name == name }
   }
   

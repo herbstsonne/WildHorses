@@ -33,7 +33,7 @@ struct LoopingBackground: BackgroundLoopable {
       bg.name = "background"
       
       bg.texture?.filteringMode = .nearest
-      scene.addChild(SpriteNode(node: bg))
+      scene.addChild(bg)
     }
   }
   

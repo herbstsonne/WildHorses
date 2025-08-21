@@ -13,17 +13,16 @@ class MockSpriteNode: SpriteNodeProtocol {
   var runWasCalled: Bool = false
   var containsWasCalled: Bool = false
   var removeFromParentWasCalled: Bool = false
-
-  var node: SKSpriteNode?
   
   var texture: SKTexture?
   var size: CGSize = .zero
-  var position: CGPoint?
+  var position: CGPoint
   var name: String?
   
   var zPosition: CGFloat
   
-  init() {
+  init(position: CGPoint = .zero) {
+    self.position = position
     zPosition = 0
   }
   

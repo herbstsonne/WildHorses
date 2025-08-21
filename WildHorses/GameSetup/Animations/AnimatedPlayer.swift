@@ -34,7 +34,7 @@ struct AnimatedPlayer: PlayerAnimatable {
     playerNode.position = CGPoint(x: parentNode.frame.midX, y: parentNode.frame.minY + 20)
     playerNode.name = "player"
     playerNode.zPosition = 2
-    parentNode.addChild(playerNode)
+    parentNode.addChild(playerNode as! SKNode)
   }
 
   mutating func run(startPosition: CGPoint, targetPosition: CGPoint) {
@@ -52,7 +52,7 @@ struct AnimatedPlayer: PlayerAnimatable {
 
     let girl = scene?.childNode(withName: "player")
     let repeatingAction = SKAction.repeatForever(SKAction.animate(with: girlFrames, timePerFrame: 0.5))
-    girl?.node?.run(repeatingAction, withKey: "repeatedAnimation")
+    girl?.run(repeatingAction, withKey: "repeatedAnimation")
   }
   
   private mutating func calculateTextureDependingOnDirection(

@@ -16,21 +16,24 @@ protocol CameraControllable {
 struct PlayerCamera: CameraControllable {
 
   private var scene: SceneNodeProtocol?
-  private var cameraNode: CameraNodeProtocol
+  private var cameraNode: SpriteNodeProtocol
 
   init(scene: SceneNodeProtocol?) {
     self.scene = scene
-    self.cameraNode = CameraNode(node: SKCameraNode())
+    self.cameraNode = SKCameraNode()
   }
 
   mutating func setup() {
-    guard var scene = scene else { return }
+    guard let scene = scene else { return }
+    guard let cameraNode = cameraNode as? SKCameraNode else { return }
     cameraNode.position = CGPoint(x: scene.size.width / 2, y: scene.size.height / 2)
-    scene.camera = cameraNode.node
+    scene.camera = cameraNode
     scene.addChild(cameraNode)
   }
 
   func add(scoreLabel: SKLabelNode, gameState: GameState) {
+    guard let cameraNode = cameraNode as? SKCameraNode else { return }
+
     guard let scene = scene else { return }
 
     scoreLabel.color = .gray
@@ -46,8 +49,7 @@ struct PlayerCamera: CameraControllable {
   mutating func alignWithPlayer(playerNode: SpriteNodeProtocol) {
     guard let scene = scene else { return }
 
-    guard let playerNodePosition = playerNode.position else { return }
-    cameraNode.position.x = playerNodePosition.x
+    cameraNode.position.x = playerNode.position.x
     cameraNode.position.y = scene.size.height / 2
   }
 }
