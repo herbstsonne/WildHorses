@@ -500,9 +500,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WildHorses/Preview Content\"";
+				DEVELOPMENT_TEAM = QF89Y48M62;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Wild Horses";
+				INFOPLIST_KEY_CFBundleDisplayName = Wildpferde;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.kids-games";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -538,9 +539,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WildHorses/Preview Content\"";
+				DEVELOPMENT_TEAM = QF89Y48M62;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Wild Horses";
+				INFOPLIST_KEY_CFBundleDisplayName = Wildpferde;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.kids-games";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
