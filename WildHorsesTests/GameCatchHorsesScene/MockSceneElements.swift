@@ -13,12 +13,14 @@ class MockHorseAnimation: HorseAnimatable {
   private(set) var caughtCalled = false
   private(set) var caughtLocation: CGPoint?
   private(set) var setupCalled = false
+  private(set) var setupCount = 0
   private(set) var runCalled = false
 
   var horses: [any SpriteNodeProtocol] = []
   
   func setup(horseNodes: [any SpriteNodeProtocol]) throws {
     setupCalled = true
+    setupCount = horses.count
   }
   
   func run(startPosition: CGPoint, horseNode: any SpriteNodeProtocol) throws {
