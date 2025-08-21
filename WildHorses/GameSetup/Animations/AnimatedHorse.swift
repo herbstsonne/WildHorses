@@ -49,11 +49,11 @@ struct AnimatedHorse: HorseAnimatable {
     horses.append(horseNode)
     scene?.addChild(horseNode as! SKSpriteNode)
   
-//    horseNode.run(SKAction.repeatForever(SKAction.animate(with: horseFrames, timePerFrame: 0.1)))
-//
-//    let moveAction = SKAction.moveBy(x: -1000, y: 0, duration: settings.speed)
-//    let repeatForever = SKAction.repeatForever(moveAction)
-//    horseNode.run(repeatForever)
+    horseNode.run(SKAction.repeatForever(SKAction.animate(with: horseFrames, timePerFrame: 0.1)))
+
+    let moveAction = SKAction.moveBy(x: -1000, y: 0, duration: settings.speed)
+    let repeatForever = SKAction.repeatForever(moveAction)
+    horseNode.run(repeatForever)
   }
   
   func caught(touchLocation: CGPoint, pointsLabel: SKLabelNode) {
