@@ -1,6 +1,6 @@
 import SpriteKit
 
-protocol HorseAnimatable {
+public protocol HorseAnimatable {
   var horses: [SpriteNodeProtocol] { get set }
   
   mutating func setup(horseNodes: [SpriteNodeProtocol]) throws

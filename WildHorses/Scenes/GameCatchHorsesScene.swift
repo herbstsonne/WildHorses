@@ -19,10 +19,10 @@ class GameCatchHorsesScene: SKScene {
   var gameState: GameState
   var settings: Settings
 
-  var playerCamera: PlayerCamera?
-  var loopingBackground: LoopingBackground?
-  var playerAnimation: AnimatedPlayer?
-  var horseAnimation: AnimatedHorse?
+  var playerCamera: CameraControllable?
+  var loopingBackground: BackgroundLoopable?
+  var playerAnimation: PlayerAnimatable?
+  var horseAnimation: HorseAnimatable?
 
   init(gameState: GameState, settings: Settings) {
     self.gameState = gameState
@@ -60,12 +60,7 @@ class GameCatchHorsesScene: SKScene {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     guard let touch = touches.first else { return }
 
-    let touchLocation = touch.location(in: self)
-    
-    playerAnimation?.calculateAnimation(startPosition: CGPoint(x:self.frame.midX, y:self.frame.minY + 20), targetPosition: touchLocation)
-    playerAnimation?.run(startPosition: CGPoint(x:self.frame.midX, y:self.frame.minY + 20), targetPosition: touchLocation)
-    horseAnimation?.caught(touchLocation: touchLocation, pointsLabel: scoreNode)
-    checkForGameWin()
+    handleTouch(at: touch.location(in: self))
   }
   
   // is called whenever:
@@ -77,11 +72,20 @@ class GameCatchHorsesScene: SKScene {
       playerAnimation?.calculateAnimation(startPosition: CGPoint(x: self.frame.midX, y: self.frame.minY + 20), targetPosition: touchLocation)
     }
   }
-
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-      
-  }
   
+  func handleTouch(at location: CGPoint) {
+    playerAnimation?.calculateAnimation(
+        startPosition: CGPoint(x:self.frame.midX, y:self.frame.minY + 20),
+        targetPosition: location
+    )
+    playerAnimation?.run(
+        startPosition: CGPoint(x:self.frame.midX, y:self.frame.minY + 20),
+        targetPosition: location
+    )
+    horseAnimation?.caught(touchLocation: location, pointsLabel: scoreNode)
+    checkForGameWin()
+  }
+
   private func setupInitialGameScene() {
     guard let view = self.view else { return }
 

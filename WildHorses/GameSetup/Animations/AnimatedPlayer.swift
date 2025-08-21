@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-protocol PlayerAnimatable {
+public protocol PlayerAnimatable {
   func setup(playerNode: SpriteNodeProtocol)
   mutating func run(startPosition: CGPoint, targetPosition: CGPoint)
   mutating func calculateAnimation(startPosition: CGPoint, targetPosition: CGPoint)

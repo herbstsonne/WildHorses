@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-protocol BackgroundLoopable {
+public protocol BackgroundLoopable {
   var scene: SceneNodeProtocol? { get }
   
   func setupBackground()

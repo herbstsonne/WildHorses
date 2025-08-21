@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class GameState: ObservableObject {
+public class GameState: ObservableObject {
   
   @Published var score: Int = 0
   @Published var won: Bool = false

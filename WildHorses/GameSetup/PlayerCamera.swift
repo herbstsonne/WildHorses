@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-protocol CameraControllable {
+public protocol CameraControllable {
   mutating func setup()
   func add(scoreLabel: SKLabelNode, gameState: GameState)
   mutating func alignWithPlayer(playerNode: SpriteNodeProtocol)
