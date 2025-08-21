@@ -8,7 +8,6 @@
 import SpriteKit
 
 public protocol SpriteNodeProtocol: AnyObject {
-  var runWasCalled: Bool { get set }
   var node: SKSpriteNode? { get }
 
   var position: CGPoint? { get set }
@@ -21,8 +20,6 @@ public protocol SpriteNodeProtocol: AnyObject {
 }
 
 public class SpriteNode: SpriteNodeProtocol {
-  
-  public var runWasCalled: Bool = false
 
   public var node: SKSpriteNode?
   
@@ -53,7 +50,7 @@ public class SpriteNode: SpriteNodeProtocol {
   }
   
   public func run(_ action: SKAction) {
-    self.runWasCalled = true
+    node?.run(action)
   }
   
   public func contains(_ p: CGPoint) -> Bool {

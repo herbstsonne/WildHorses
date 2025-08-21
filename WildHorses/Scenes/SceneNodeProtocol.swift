@@ -17,7 +17,7 @@ public protocol SceneNodeProtocol {
   func addChild(_ node: any CameraNodeProtocol)
   func childNode(withName name: String) -> (any SpriteNodeProtocol)?
   func removeAction(forKey key: String)
-  func enumerateChildNodes(withName name: String, using block: @escaping (any SpriteNodeProtocol, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateChildNodes(withName name: String, using block: @escaping (SKNode, UnsafeMutablePointer<ObjCBool>) -> Void)
 }
 
 struct SceneNode: SceneNodeProtocol {
@@ -56,14 +56,15 @@ struct SceneNode: SceneNodeProtocol {
   }
 
   func childNode(withName name: String) -> (any SpriteNodeProtocol)? {
-    return children.first(where: { $0.name == name })
+    let node = scene.childNode(withName: name)
+    return SpriteNode(node: node as? SKSpriteNode)
   }
   
   func removeAction(forKey key: String) {
     scene.removeAction(forKey: key)
   }
 
-  func enumerateChildNodes(withName name: String, using block: @escaping (any SpriteNodeProtocol, UnsafeMutablePointer<ObjCBool>) -> Void) {
-    //scene.enumerateChildNodes(withName: name, using: block)
+  func enumerateChildNodes(withName name: String, using block: @escaping (SKNode, UnsafeMutablePointer<ObjCBool>) -> Void) {
+    scene.enumerateChildNodes(withName: name, using: block)
   }
 }

@@ -9,6 +9,9 @@ import WildHorses
 import SpriteKit
 
 class MockScene: SceneNodeProtocol {
+  
+  var removeActionWasCalled: Bool = false
+  var enumerateChildNodesWasCalled: Bool = false
 
   var frame: CGRect
 
@@ -16,26 +19,34 @@ class MockScene: SceneNodeProtocol {
   
   var camera: SKCameraNode?
   
-  var children: [SKNode] = []
+  var children: [SpriteNodeProtocol] = []
   
   init() {
     frame = CGRect(x: 1000, y: 500, width: 1000, height: 500)
     size = .zero
   }
 
-  func addChild(_ node: SKNode) {
-    children.append(node)
+  func addChild(_ node: any SpriteNodeProtocol) {
+    let mockNode = MockSpriteNode()
+    children.append(mockNode)
   }
   
-  func childNode(withName name: String) -> SKNode? {
-    children.first { $0.name == name }
+  func addChild(_ node: any CameraNodeProtocol) {
+    //TODO: cameraMockNode
+    
+  }
+  
+  func childNode(withName name: String) -> SpriteNodeProtocol? {
+    return children.first { $0.name == name }
   }
   
   func removeAction(forKey key: String) {
-    children.removeAll { $0.action(forKey: key) != nil }
+    // TODO: later
+    //children.removeAll { $0.action(forKey: key) != nil }
+    removeActionWasCalled = true
   }
   
   func enumerateChildNodes(withName name: String, using block: @escaping (SKNode, UnsafeMutablePointer<ObjCBool>) -> Void) {
-    
+    enumerateChildNodesWasCalled = true
   }
 }
