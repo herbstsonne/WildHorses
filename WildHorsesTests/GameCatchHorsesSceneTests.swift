@@ -9,35 +9,39 @@ import SpriteKit
 import Testing
 @testable import WildHorses
 
+@MainActor
 @Suite("GameCatchHorsesScene Tests")
 struct GameCatchHorsesSceneTests {
 
     @Test("didMove sets up scene and animations")
     func test_didMove() {
-        let scene = GameCatchHorsesScene.testScene()
-        let view = SKView()
-        scene.didMove(to: view)
+      let scene = GameCatchHorsesScene.testScene()
+      let view = SKView()
+      view.presentScene(scene)
+      scene.didMove(to: view)
 
-        let camera = scene.playerCamera as! MockPlayerCamera
-        let background = scene.loopingBackground as! MockLoopingBackground
-        let playerAnim = scene.playerAnimation as! MockPlayerAnimation
-        let horseAnim = scene.horseAnimation as! MockHorseAnimation
+      let camera = scene.playerCamera as! MockPlayerCamera
+      let background = scene.loopingBackground as! MockLoopingBackground
+      let playerAnim = scene.playerAnimation as! MockPlayerAnimation
+      let horseAnim = scene.horseAnimation as! MockHorseAnimation
 
-        #expect(camera.setupCalled)
-        #expect(camera.addCalled)
-        #expect(background.setupCalled)
-        #expect(playerAnim.setupCalled)
-        #expect(horseAnim.setupCalled)
-        #expect(horseAnim.setupCount == scene.settings.numberOfHorses)
+      #expect(camera.setupCalled)
+      #expect(camera.addCalled)
+      #expect(background.setupCalled)
+      #expect(playerAnim.setupCalled)
+      #expect(horseAnim.setupCalled)
+      #expect(horseAnim.setupCount == scene.settings.numberOfHorses)
     }
 
     @Test("update loops background when camera is present")
     func test_update_callsLoop() {
-        let scene = GameCatchHorsesScene.testScene()
-        scene.camera = SKCameraNode()
-        scene.update(0)
-        let background = scene.loopingBackground as! MockLoopingBackground
-        #expect(background.loopCalled)
+      let scene = GameCatchHorsesScene.testScene()
+      let cameraNode = SKCameraNode()
+      scene.addChild(cameraNode)
+      scene.camera = cameraNode
+      scene.update(0)
+      let background = scene.loopingBackground as! MockLoopingBackground
+      #expect(background.loopCalled)
     }
 
     @Test("didSimulatePhysics aligns camera with player")
@@ -91,21 +95,20 @@ struct GameCatchHorsesSceneTests {
     }
 }
 
-
 extension GameCatchHorsesScene {
   static func testScene(
     gameState: GameState = GameState(),
     settings: Settings = Settings(),
-    playerAnimation: PlayerAnimatable? = nil,
-    horseAnimation: HorseAnimatable? = nil,
-    loopingBackground: LoopingBackground? = nil,
-    playerCamera: PlayerCamera? = nil
+    playerAnimation: PlayerAnimatable? = MockPlayerAnimation(),
+    horseAnimation: HorseAnimatable? = MockHorseAnimation(),
+    loopingBackground: BackgroundLoopable? = MockLoopingBackground(),
+    playerCamera: CameraControllable? = MockPlayerCamera()
   ) -> GameCatchHorsesScene {
     let scene = GameCatchHorsesScene(gameState: gameState, settings: settings)
-    scene.playerAnimation = MockPlayerAnimation()
-    scene.horseAnimation = MockHorseAnimation()
-    scene.loopingBackground = MockLoopingBackground()
-    scene.playerCamera = MockPlayerCamera()
+    scene.playerAnimation = playerAnimation
+    scene.horseAnimation = horseAnimation
+    scene.loopingBackground = loopingBackground
+    scene.playerCamera = playerCamera
     return scene
   }
 }

@@ -31,7 +31,7 @@ struct AnimatedHorse: HorseAnimatable {
     guard let parentNode = scene else { return }
 
     if horseNodes.count != settings.numberOfHorses {
-      fatalError("Wrong number of horse nodes")
+      throw HorseNodeError.wrongNumber("Wrong number of horse nodes")
     }
 
     for num in 0..<settings.numberOfHorses {
@@ -43,11 +43,12 @@ struct AnimatedHorse: HorseAnimatable {
   }
 
   mutating func run(startPosition: CGPoint, horseNode: SpriteNodeProtocol) throws {
+    guard let horseNode = horseNode as? SKSpriteNode else { return }
     horseFrames = collectHorseFrames()
     horseNode.position = startPosition
     horseNode.name = "horse"
     horses.append(horseNode)
-    scene?.addChild(horseNode as! SKSpriteNode)
+    scene?.addChild(horseNode)
   
     horseNode.run(SKAction.repeatForever(SKAction.animate(with: horseFrames, timePerFrame: 0.1)))
 

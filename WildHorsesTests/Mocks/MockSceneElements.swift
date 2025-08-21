@@ -20,7 +20,7 @@ class MockHorseAnimation: HorseAnimatable {
   
   func setup(horseNodes: [any SpriteNodeProtocol]) throws {
     setupCalled = true
-    setupCount = horses.count
+    setupCount = horseNodes.count
   }
   
   func run(startPosition: CGPoint, horseNode: any SpriteNodeProtocol) throws {
@@ -57,7 +57,7 @@ final class MockLoopingBackground: BackgroundLoopable {
   
   var setupCalled = false
   var loopCalled = false
-  var scene: (any WildHorses.SceneNodeProtocol)?
+  var scene: (any SceneNodeProtocol)?
 
   func setupBackground() { setupCalled = true }
   func loop(camera: SKCameraNode) { loopCalled = true }
@@ -73,3 +73,12 @@ final class MockPlayerCamera: CameraControllable {
   func add(scoreLabel: SKLabelNode, gameState: GameState) { addCalled = true }
 }
 
+final class MockTouch: UITouch {
+  private let mockLocation: CGPoint
+  init(location: CGPoint) {
+    self.mockLocation = location
+    super.init()
+  }
+  override func location(in view: UIView?) -> CGPoint { mockLocation }
+  override func location(in node: SKNode) -> CGPoint { mockLocation }
+}

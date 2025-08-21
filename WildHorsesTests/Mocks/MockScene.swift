@@ -20,14 +20,19 @@ class MockScene: SceneNodeProtocol {
   var camera: SKCameraNode?
   
   var children: [SKNode] = []
+  var mockChildren: [SpriteNodeProtocol] = []
   
-  init() {
+  init(size: CGSize? = nil) {
     frame = CGRect(x: 1000, y: 500, width: 1000, height: 500)
-    size = .zero
+    self.size = size ?? .zero
   }
 
   func addChild(_ node: SKNode) {
     children.append(node)
+  }
+  
+  func addChild(_ node: SpriteNodeProtocol) {
+    mockChildren.append(node)
   }
   
   func childNode(withName name: String) -> SKNode? {

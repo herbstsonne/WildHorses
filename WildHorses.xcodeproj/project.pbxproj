@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CD2A5C9E2C8F905300CCD661 /* WildHorsesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5C9D2C8F905300CCD661 /* WildHorsesApp.swift */; };
 		CD2A5CA62C8F905400CCD661 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD2A5CA52C8F905400CCD661 /* Preview Assets.xcassets */; };
-		CD2A5CB02C8F905500CCD661 /* WildHorsesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CAF2C8F905500CCD661 /* WildHorsesTests.swift */; };
 		CD2A5CBA2C8F905500CCD661 /* WildHorsesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CB92C8F905500CCD661 /* WildHorsesUITests.swift */; };
 		CD2A5CBC2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A5CBB2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift */; };
 		CD4EE8E72E55FDA2007386D9 /* Girl.atlas in Resources */ = {isa = PBXBuildFile; fileRef = CD4EE8DF2E55FDA2007386D9 /* Girl.atlas */; };
@@ -18,8 +17,11 @@
 		CD4EE8EA2E55FDA2007386D9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EE8E32E55FDA2007386D9 /* MenuView.swift */; };
 		CD4EE8EB2E55FDA2007386D9 /* CatchHorsesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EE8E22E55FDA2007386D9 /* CatchHorsesView.swift */; };
 		CD4EE8EC2E55FDA2007386D9 /* RouteViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EE8DD2E55FDA2007386D9 /* RouteViews.swift */; };
-		CD4EE8EE2E560408007386D9 /* MockScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EE8ED2E560402007386D9 /* MockScene.swift */; };
-		CD4EE8FC2E5747A0007386D9 /* MockSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EE8FB2E57479A007386D9 /* MockSpriteNode.swift */; };
+		CD4EE9002E578A23007386D9 /* GameCatchHorsesSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EE8FF2E578A10007386D9 /* GameCatchHorsesSceneTests.swift */; };
+		CD4EE90A2E57C7C1007386D9 /* PlayerCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EE9082E57C7A6007386D9 /* PlayerCameraTests.swift */; };
+		CD4EE90C2E57C8F7007386D9 /* LoopingBackgroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EE90B2E57C8F0007386D9 /* LoopingBackgroundTests.swift */; };
+		CD4EE90E2E57C9D1007386D9 /* AnimatedHorseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EE90D2E57C9CB007386D9 /* AnimatedHorseTests.swift */; };
+		CD4EE9142E57D69B007386D9 /* AnimatedPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4EE9132E57D694007386D9 /* AnimatedPlayerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +47,6 @@
 		CD2A5CA32C8F905400CCD661 /* WildHorses.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WildHorses.entitlements; sourceTree = "<group>"; };
 		CD2A5CA52C8F905400CCD661 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CD2A5CAB2C8F905400CCD661 /* WildHorsesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WildHorsesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD2A5CAF2C8F905500CCD661 /* WildHorsesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesTests.swift; sourceTree = "<group>"; };
 		CD2A5CB52C8F905500CCD661 /* WildHorsesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WildHorsesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2A5CB92C8F905500CCD661 /* WildHorsesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesUITests.swift; sourceTree = "<group>"; };
 		CD2A5CBB2C8F905500CCD661 /* WildHorsesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildHorsesUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -55,14 +56,17 @@
 		CD4EE8E22E55FDA2007386D9 /* CatchHorsesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchHorsesView.swift; sourceTree = "<group>"; };
 		CD4EE8E32E55FDA2007386D9 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		CD4EE8E52E55FDA2007386D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CD4EE8ED2E560402007386D9 /* MockScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockScene.swift; sourceTree = "<group>"; };
-		CD4EE8FB2E57479A007386D9 /* MockSpriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSpriteNode.swift; sourceTree = "<group>"; };
+		CD4EE8FF2E578A10007386D9 /* GameCatchHorsesSceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCatchHorsesSceneTests.swift; sourceTree = "<group>"; };
+		CD4EE9082E57C7A6007386D9 /* PlayerCameraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCameraTests.swift; sourceTree = "<group>"; };
+		CD4EE90B2E57C8F0007386D9 /* LoopingBackgroundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingBackgroundTests.swift; sourceTree = "<group>"; };
+		CD4EE90D2E57C9CB007386D9 /* AnimatedHorseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedHorseTests.swift; sourceTree = "<group>"; };
+		CD4EE9132E57D694007386D9 /* AnimatedPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedPlayerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CD3A48FC2E5281DA00C07DF7 /* Scenes */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Scenes; sourceTree = "<group>"; };
 		CD3A49072E5543AF00C07DF7 /* GameSetup */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GameSetup; sourceTree = "<group>"; };
-		CD4EE9032E57913B007386D9 /* GameCatchHorsesScene */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GameCatchHorsesScene; sourceTree = "<group>"; };
+		CD4EE9152E57DB7E007386D9 /* Mocks */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Mocks; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,10 +138,12 @@
 		CD2A5CAE2C8F905400CCD661 /* WildHorsesTests */ = {
 			isa = PBXGroup;
 			children = (
-				CD4EE9032E57913B007386D9 /* GameCatchHorsesScene */,
-				CD4EE8FB2E57479A007386D9 /* MockSpriteNode.swift */,
-				CD4EE8ED2E560402007386D9 /* MockScene.swift */,
-				CD2A5CAF2C8F905500CCD661 /* WildHorsesTests.swift */,
+				CD4EE9152E57DB7E007386D9 /* Mocks */,
+				CD4EE9132E57D694007386D9 /* AnimatedPlayerTests.swift */,
+				CD4EE90D2E57C9CB007386D9 /* AnimatedHorseTests.swift */,
+				CD4EE90B2E57C8F0007386D9 /* LoopingBackgroundTests.swift */,
+				CD4EE9082E57C7A6007386D9 /* PlayerCameraTests.swift */,
+				CD4EE8FF2E578A10007386D9 /* GameCatchHorsesSceneTests.swift */,
 			);
 			path = WildHorsesTests;
 			sourceTree = "<group>";
@@ -226,7 +232,7 @@
 				CD2A5CAD2C8F905400CCD661 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				CD4EE9032E57913B007386D9 /* GameCatchHorsesScene */,
+				CD4EE9152E57DB7E007386D9 /* Mocks */,
 			);
 			name = WildHorsesTests;
 			productName = WildHorsesTests;
@@ -338,9 +344,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD4EE8EE2E560408007386D9 /* MockScene.swift in Sources */,
-				CD4EE8FC2E5747A0007386D9 /* MockSpriteNode.swift in Sources */,
-				CD2A5CB02C8F905500CCD661 /* WildHorsesTests.swift in Sources */,
+				CD4EE90C2E57C8F7007386D9 /* LoopingBackgroundTests.swift in Sources */,
+				CD4EE9002E578A23007386D9 /* GameCatchHorsesSceneTests.swift in Sources */,
+				CD4EE90E2E57C9D1007386D9 /* AnimatedHorseTests.swift in Sources */,
+				CD4EE9142E57D69B007386D9 /* AnimatedPlayerTests.swift in Sources */,
+				CD4EE90A2E57C7C1007386D9 /* PlayerCameraTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,14 @@ class GameCatchHorsesScene: SKScene {
   var playerAnimation: PlayerAnimatable?
   var horseAnimation: HorseAnimatable?
 
-  init(gameState: GameState, settings: Settings) {
+  init(
+    gameState: GameState,
+    settings: Settings,
+    playerCamera: CameraControllable? = nil,
+    loopingBackground: BackgroundLoopable? = nil,
+    playerAnimation: PlayerAnimatable? = nil,
+    horseAnimation: HorseAnimatable? = nil
+  ) {
     self.gameState = gameState
     self.settings = settings
     self.playerNode = SKSpriteNode(texture: SKTexture(imageNamed: "girl_front"), color: .blue, size: CGSize(width: 50, height: 50))
@@ -32,10 +39,10 @@ class GameCatchHorsesScene: SKScene {
 
     super.init(size: CGSize(width: 300, height: 400))
     self.gameScene = self
-    playerCamera = PlayerCamera(scene: gameScene)
-    loopingBackground = LoopingBackground(scene: gameScene)
-    horseAnimation = AnimatedHorse(scene: gameScene, gameState: gameState, settings: settings)
-    playerAnimation = AnimatedPlayer(scene: gameScene, gameState: gameState, settings: settings)
+    self.playerCamera = PlayerCamera(scene: gameScene)
+    self.loopingBackground = LoopingBackground(scene: gameScene)
+    self.horseAnimation = AnimatedHorse(scene: gameScene, gameState: gameState, settings: settings)
+    self.playerAnimation = AnimatedPlayer(scene: gameScene, gameState: gameState, settings: settings)
   }
   
   required init?(coder aDecoder: NSCoder) {
