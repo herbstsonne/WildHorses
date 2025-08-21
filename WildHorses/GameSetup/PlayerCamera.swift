@@ -8,28 +8,31 @@
 import SpriteKit
 
 protocol CameraControllable {
-  func setup()
+  mutating func setup()
   func add(scoreLabel: SKLabelNode, gameState: GameState)
-  func alignWithPlayer(playerNode: SKSpriteNode)
+  mutating func alignWithPlayer(playerNode: SpriteNodeProtocol)
 }
 
 struct PlayerCamera: CameraControllable {
-  
-  private let scene: SKScene
-  private let cameraNode: SKCameraNode
 
-  init(scene: SKScene) {
+  private var scene: SceneNodeProtocol?
+  private var cameraNode: CameraNodeProtocol
+
+  init(scene: SceneNodeProtocol?) {
     self.scene = scene
-    self.cameraNode = SKCameraNode()
+    self.cameraNode = CameraNode(node: SKCameraNode())
   }
-  
-  func setup() {
+
+  mutating func setup() {
+    guard var scene = scene else { return }
     cameraNode.position = CGPoint(x: scene.size.width / 2, y: scene.size.height / 2)
-    scene.camera = cameraNode
+    scene.camera = cameraNode.node
     scene.addChild(cameraNode)
   }
-  
+
   func add(scoreLabel: SKLabelNode, gameState: GameState) {
+    guard let scene = scene else { return }
+
     scoreLabel.color = .gray
     scoreLabel.text = "Points: \(gameState.score)"
     scoreLabel.horizontalAlignmentMode = .right
@@ -39,9 +42,12 @@ struct PlayerCamera: CameraControllable {
     
     cameraNode.addChild(scoreLabel)
   }
-  
-  func alignWithPlayer(playerNode: SKSpriteNode) {
-    cameraNode.position.x = playerNode.position.x
+
+  mutating func alignWithPlayer(playerNode: SpriteNodeProtocol) {
+    guard let scene = scene else { return }
+
+    guard let playerNodePosition = playerNode.position else { return }
+    cameraNode.position.x = playerNodePosition.x
     cameraNode.position.y = scene.size.height / 2
   }
 }

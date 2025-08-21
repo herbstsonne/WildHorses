@@ -8,7 +8,7 @@
 import SpriteKit
 
 protocol BackgroundLoopable {
-  var scene: SKScene { get }
+  var scene: SceneNodeProtocol? { get }
   
   func setupBackground()
   func loop(camera: SKCameraNode)
@@ -16,28 +16,31 @@ protocol BackgroundLoopable {
 
 struct LoopingBackground: BackgroundLoopable {
   
-  let scene: SKScene
+  var scene: SceneNodeProtocol?
 
-  init(scene: SKScene) {
+  init(scene: SceneNodeProtocol?) {
     self.scene = scene
   }
 
   func setupBackground() {
+    guard let scene = scene else { return }
     for i in 0...1 {
       let bg = SKSpriteNode(imageNamed: "prairie")
       bg.anchorPoint = .zero
-      bg.position = CGPoint(x: CGFloat(i) * self.scene.size.width, y: 0)
-      bg.size = self.scene.size
+      bg.position = CGPoint(x: CGFloat(i) * scene.size.width, y: 0)
+      bg.size = scene.size
       bg.zPosition = -1
       bg.name = "background"
       
       bg.texture?.filteringMode = .nearest
-      scene.addChild(bg)
+      scene.addChild(SpriteNode(node: bg))
     }
   }
   
   func loop(camera: SKCameraNode) {
-    self.scene.enumerateChildNodes(withName: "background") { node, _ in
+    guard let scene = scene else { return }
+
+    scene.enumerateChildNodes(withName: "background") { node, _ in
       guard let bg = node as? SKSpriteNode else { return }
       
       self.loopToRight(camera: camera, bg: bg)
@@ -46,13 +49,15 @@ struct LoopingBackground: BackgroundLoopable {
   }
 
   private func loopToRight(camera: SKCameraNode, bg: SKSpriteNode) {
-    if bg.position.x + bg.size.width < camera.position.x - self.scene.size.width / 2 {
+    guard let scene = scene else { return }
+    if bg.position.x + bg.size.width < camera.position.x - scene.size.width / 2 {
       bg.position.x += bg.size.width * 2 - 1
     }
   }
   
   private func loopToLeft(camera: SKCameraNode, bg: SKSpriteNode) {
-    if bg.position.x > camera.position.x + self.scene.size.width / 2 {
+    guard let scene = scene else { return }
+    if bg.position.x > camera.position.x + scene.size.width / 2 {
       bg.position.x -= bg.size.width * 2 - 1
     }
   }

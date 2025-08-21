@@ -11,7 +11,9 @@ import SwiftUI
 
 class GameCatchHorsesScene: SKScene {
   
-  let playerNode: SKSpriteNode
+  var gameScene: SceneNodeProtocol?
+
+  var playerNode: SpriteNodeProtocol
   var scoreNode: SKLabelNode
 
   var gameState: GameState
@@ -21,19 +23,23 @@ class GameCatchHorsesScene: SKScene {
   var loopingBackground: LoopingBackground?
   var playerAnimation: AnimatedPlayer?
   var horseAnimation: AnimatedHorse?
+  
+  var horseFrames: [SKTexture] = []
 
   init(gameState: GameState, settings: Settings) {
     self.gameState = gameState
     self.settings = settings
-    self.playerNode = SKSpriteNode(texture: SKTexture(imageNamed: "girl_front"), color: .blue, size: CGSize(width: 50, height: 50))
+    self.playerNode = SpriteNode(node: SKSpriteNode(texture: SKTexture(imageNamed: "girl_front"), color: .blue, size: CGSize(width: 50, height: 50)))
     self.scoreNode = SKLabelNode()
 
     super.init(size: CGSize(width: 300, height: 400))
-
-    playerCamera = PlayerCamera(scene: self)
-    loopingBackground = LoopingBackground(scene: self)
-    horseAnimation = AnimatedHorse(scene: self, gameState: gameState, settings: settings)
-    playerAnimation = AnimatedPlayer(scene: self, gameState: gameState, settings: settings)
+    
+    self.horseFrames = collectHorseFrames()
+    self.gameScene = SceneNode(scene: self)
+    playerCamera = PlayerCamera(scene: gameScene)
+    loopingBackground = LoopingBackground(scene: gameScene)
+    horseAnimation = AnimatedHorse(scene: gameScene, horseNode: SpriteNode(texture: horseFrames[0]), gameState: gameState, settings: settings, horseFrames: horseFrames)
+    playerAnimation = AnimatedPlayer(scene: gameScene, gameState: gameState, settings: settings)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -101,5 +107,16 @@ class GameCatchHorsesScene: SKScene {
     }) {
       gameState.won.toggle()
     }
+  }
+  
+  private func collectHorseFrames() -> [SKTexture] {
+    let horseAtlas = SKTextureAtlas(named: "Horse")
+    let numImages = horseAtlas.textureNames.count
+    
+    for i in 0...numImages - 1 {
+      let textureName = "horse_run\(i)"
+      horseFrames.append(horseAtlas.textureNamed(textureName))
+    }
+    return horseFrames
   }
 }

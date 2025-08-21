@@ -1,7 +1,7 @@
 import SpriteKit
 
 protocol HorseAnimatable {
-  var horses: [SKSpriteNode] { get set }
+  var horses: [SpriteNodeProtocol] { get set }
   
   mutating func setup()
   mutating func run(startPosition: CGPoint)
@@ -10,21 +10,20 @@ protocol HorseAnimatable {
 
 struct AnimatedHorse: HorseAnimatable {
   
-  var horses: [SKSpriteNode] = []
+  var horses: [SpriteNodeProtocol] = []
 
   private var gameState: GameState
   private let settings: Settings
-  private var scene: SKNode?
-  private var horseFrames: [SKTexture] = []
-  private let horseAtlas: SKTextureAtlas?
-  private let numImages: Int
+  private var scene: SceneNodeProtocol?
+  private var horseNode: SpriteNodeProtocol?
+  private var horseFrames: [SKTexture]
   
-  init(scene: SKScene, gameState: GameState, settings: Settings) {
+  init(scene: SceneNodeProtocol?, horseNode: SpriteNodeProtocol?, gameState: GameState, settings: Settings, horseFrames: [SKTexture] = []) {
     self.gameState = gameState
     self.settings = settings
     self.scene = scene
-    horseAtlas = SKTextureAtlas(named: "Horse")
-    numImages = horseAtlas?.textureNames.count ?? 0
+    self.horseNode = horseNode
+    self.horseFrames = horseFrames
   }
   
   mutating func setup() {
@@ -36,25 +35,19 @@ struct AnimatedHorse: HorseAnimatable {
   }
 
   mutating func run(startPosition: CGPoint) {
-    guard let horseAtlas = horseAtlas else { return }
-    for i in 0...numImages - 1 {
-      let textureName = "horse_run\(i)"
-      horseFrames.append(horseAtlas.textureNamed(textureName))
-    }
-    
-    // Create sprite node
-    let horse = SKSpriteNode(texture: horseFrames[0])
-    horse.position = startPosition
-    horse.name = "horse"
-    horses.append(horse)
-    scene?.addChild(horse)
+    guard let horseNode = horseNode else { return }
+
+    horseNode.position = startPosition
+    horseNode.name = "horse"
+    horses.append(horseNode)
+    scene?.addChild(horseNode)
     
     // Run animation
-    horse.run(SKAction.repeatForever(SKAction.animate(with: horseFrames, timePerFrame: 0.1)))
+    horseNode.run(SKAction.repeatForever(SKAction.animate(with: horseFrames, timePerFrame: 0.1)))
     // Move across screen
     let moveAction = SKAction.moveBy(x: -1000, y: 0, duration: settings.speed)
     let repeatForever = SKAction.repeatForever(moveAction)
-    horse.run(repeatForever)
+    horseNode.run(repeatForever)
   }
   
   func caught(touchLocation: CGPoint, pointsLabel: SKLabelNode) {
@@ -63,7 +56,7 @@ struct AnimatedHorse: HorseAnimatable {
     for horse in horses {
       if horse.contains(touchLocation) {
         if parentNode.children.contains(where: {
-          $0 == horse
+          $0.node == horse.node
         })
         {
           print("Catched a horse")
