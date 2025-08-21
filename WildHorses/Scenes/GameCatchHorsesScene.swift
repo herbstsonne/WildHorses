@@ -38,7 +38,7 @@ class GameCatchHorsesScene: SKScene {
     self.gameScene = SceneNode(scene: self)
     playerCamera = PlayerCamera(scene: gameScene)
     loopingBackground = LoopingBackground(scene: gameScene)
-    horseAnimation = AnimatedHorse(scene: gameScene, horseNode: SpriteNode(texture: horseFrames[0]), gameState: gameState, settings: settings, horseFrames: horseFrames)
+    horseAnimation = AnimatedHorse(scene: gameScene, gameState: gameState, settings: settings, horseFrames: horseFrames)
     playerAnimation = AnimatedPlayer(scene: gameScene, gameState: gameState, settings: settings)
   }
   
