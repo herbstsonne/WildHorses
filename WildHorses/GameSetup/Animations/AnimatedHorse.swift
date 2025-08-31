@@ -63,7 +63,7 @@ struct AnimatedHorse: HorseAnimatable {
     for horse in horses {
       if horse.contains(touchLocation) {
         if parentNode.children.contains(where: {
-          $0 == horse as! SKSpriteNode
+          $0 == horse as? SKSpriteNode
         })
         {
           print("Catched a horse")

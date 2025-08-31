@@ -1,10 +1,3 @@
-//
-//  AnimatedGirl.swift
-//  WildHorses
-//
-//  Created by Miriam Pfaffenbach on 18.08.25.
-//
-
 import SpriteKit
 
 public protocol PlayerAnimatable {
@@ -30,11 +23,12 @@ struct AnimatedPlayer: PlayerAnimatable {
   
   func setup(playerNode: SpriteNodeProtocol) {
     guard let parentNode = scene else { return }
+    guard let playerNode = playerNode as? SKNode else { return }
 
     playerNode.position = CGPoint(x: parentNode.frame.midX, y: parentNode.frame.minY + 20)
     playerNode.name = "player"
     playerNode.zPosition = 2
-    parentNode.addChild(playerNode as! SKNode)
+    parentNode.addChild(playerNode)
   }
 
   mutating func run(startPosition: CGPoint, targetPosition: CGPoint) {

@@ -1,15 +1,7 @@
-//
-//  LoopingBackgroundTests.swift
-//  WildHorses
-//
-//  Created by Miriam Pfaffenbach on 21.08.25.
-//
-
 import Testing
 import SpriteKit
 @testable import WildHorses
 
-// MARK: - Tests
 @Suite("LoopingBackground Tests")
 struct LoopingBackgroundTests {
     

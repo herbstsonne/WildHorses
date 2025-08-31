@@ -1,15 +1,6 @@
-//
-//  AnimatedPlayerTests.swift
-//  WildHorses
-//
-//  Created by Miriam Pfaffenbach on 22.08.25.
-//
-
 import SpriteKit
 import Testing
 @testable import WildHorses
-
-// MARK: - Test Suite
 
 @Suite("AnimatedPlayer Tests")
 struct AnimatedPlayerTests {
@@ -26,7 +17,7 @@ struct AnimatedPlayerTests {
     #expect(sprite.position == CGPoint(x: scene.frame.midX, y: scene.frame.minY + 20))
     #expect(sprite.name == "player")
     #expect(sprite.zPosition == 2)
-    #expect(scene.children.contains { $0 === sprite as! SKNode })
+    #expect(scene.children.contains { $0 === sprite as? SKNode })
   }
     
   @Test("run adds move action")
