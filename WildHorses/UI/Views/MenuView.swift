@@ -67,10 +67,18 @@ extension MenuView {
   
   private func settingsView() -> some View {
     VStack(alignment: .leading) {
-      Text("Pferdespiele für mein Spätzchen")
-        .font(.largeTitle)
-        .padding(.top, 24)
-      TextField("Spielername:", text: $settings.playerName)
+        TextField("Spielername:", text: $settings.playerName)
+        HStack {
+            Text("Zu erreichende Punktzahl:")
+            TextField(
+                "Wie viele Punkte möchtest du erreichen?",
+                text: Binding(
+                    get: { String(settings.pointsToAchieve) },
+                    set: { settings.pointsToAchieve = Int($0) ?? 0 }
+                )
+            )
+            .keyboardType(.numberPad)
+        }
       Stepper("Anzahl Pferde: \(settings.numberOfHorses)", value: $settings.numberOfHorses, in: 1...10)
         .padding(.trailing, 20)
       HStack {

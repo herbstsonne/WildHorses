@@ -53,6 +53,12 @@ class GameCatchHorsesScene: SKScene {
     guard let camera = self.camera else { return }
 
     loopingBackground?.loop(camera: camera)
+    if self.children.contains(where: { $0.name == "horse" }) { return }
+      do {
+        try horseAnimation?.addMoreHorses(camera: camera)
+      } catch {
+        print(error)
+      }
   }
 
   override func didMove(to view: SKView) {
@@ -105,23 +111,16 @@ class GameCatchHorsesScene: SKScene {
   
   private func setupAnimations() {
     playerAnimation?.setup(playerNode: playerNode)
-    
-    var horseNodes: [SpriteNodeProtocol] = []
-    for _ in 0..<settings.numberOfHorses {
-      let horseNode = SKSpriteNode(texture: SKTexture(imageNamed: "horse_run0"), color: .blue, size: CGSize(width: 100, height: 100))
-      horseNodes.append(horseNode)
-    }
+
     do {
-      try horseAnimation?.setup(horseNodes: horseNodes)
+      try horseAnimation?.setup()
     } catch {
       print(error)
     }
   }
-  
+
   private func checkForGameWin() {
-    if !self.children.contains(where: {
-      $0.name == "horse"
-    }) {
+      if settings.pointsToAchieve == gameState.score {
       gameState.won.toggle()
     }
   }

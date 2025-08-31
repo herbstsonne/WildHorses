@@ -9,6 +9,7 @@ import SwiftUI
 
 class Settings: ObservableObject {
     
+  @Published var pointsToAchieve: Int = 20
   @Published var speed: Double = 10
   @Published var numberOfHorses: Int = 3
   @Published var playerName: String = ""

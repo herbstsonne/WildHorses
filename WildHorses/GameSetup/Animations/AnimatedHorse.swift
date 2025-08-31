@@ -2,15 +2,18 @@ import SpriteKit
 
 public protocol HorseAnimatable {
   var horses: [SpriteNodeProtocol] { get set }
+  var catchedHorses: Int { get }
   
-  mutating func setup(horseNodes: [SpriteNodeProtocol]) throws
+  mutating func setup() throws
+  mutating func addMoreHorses(camera: SKCameraNode) throws
   mutating func run(startPosition: CGPoint, horseNode: SpriteNodeProtocol) throws
-  func caught(touchLocation: CGPoint, pointsLabel: SKLabelNode)
+  mutating func caught(touchLocation: CGPoint, pointsLabel: SKLabelNode)
 }
 
 struct AnimatedHorse: HorseAnimatable {
   
   var horses: [SpriteNodeProtocol] = []
+  var catchedHorses: Int = 0
 
   private var gameState: GameState
   private let settings: Settings
@@ -27,18 +30,27 @@ struct AnimatedHorse: HorseAnimatable {
     self.scene = scene
   }
   
-  mutating func setup(horseNodes: [SpriteNodeProtocol]) throws {
+  mutating func setup() throws {
     guard let parentNode = scene else { return }
 
-    if horseNodes.count != settings.numberOfHorses {
-      throw HorseNodeError.wrongNumber("Wrong number of horse nodes")
-    }
-
-    for num in 0..<settings.numberOfHorses {
+    for _ in 0..<settings.numberOfHorses {
+      let horseNode = SKSpriteNode(texture: SKTexture(imageNamed: "horse_run0"), color: .blue, size: CGSize(width: 100, height: 100))
       try run(
-        startPosition: CGPoint(x: 700, y: Double.random(in: parentNode.frame.minY + 50...parentNode.frame.maxY - 200)),
-        horseNode: horseNodes[num]
+        startPosition: CGPoint(x: Double.random(in: parentNode.frame.maxX + 50...parentNode.frame.maxX + 700), y: Double.random(in: parentNode.frame.minY + 50...parentNode.frame.maxY - 250)),
+        horseNode: horseNode
       )
+    }
+  }
+
+  mutating func addMoreHorses(camera: SKCameraNode) throws {
+    guard let parentNode = scene else { return }
+
+    for _ in 0..<settings.numberOfHorses {
+      let horseNode = SKSpriteNode(texture: SKTexture(imageNamed: "horse_run0"), color: .blue, size: CGSize(width: 100, height: 100))
+      try run(
+        startPosition: CGPoint(x: Double.random(in: parentNode.size.width + camera.position.x...parentNode.size.width + camera.position.x + 500), y: Double.random(in: parentNode.frame.minY + 50...parentNode.frame.maxY - 250)),
+          horseNode: horseNode
+        )
     }
   }
 
@@ -57,19 +69,20 @@ struct AnimatedHorse: HorseAnimatable {
     horseNode.run(repeatForever)
   }
   
-  func caught(touchLocation: CGPoint, pointsLabel: SKLabelNode) {
+  mutating func caught(touchLocation: CGPoint, pointsLabel: SKLabelNode) {
     guard let parentNode = scene else { return }
 
     for horse in horses {
       if horse.contains(touchLocation) {
         if parentNode.children.contains(where: {
-          $0 == horse as? SKSpriteNode
+            $0 == horse as? SKSpriteNode
         })
         {
           print("Catched a horse")
           horse.removeFromParent()
           gameState.score += 1
-          pointsLabel.text = "Points: \(gameState.score)"
+          catchedHorses += 1
+          pointsLabel.text = "Punkte: \(gameState.score)"
         }
       }
     }
