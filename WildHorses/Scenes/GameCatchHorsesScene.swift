@@ -120,7 +120,7 @@ class GameCatchHorsesScene: SKScene {
   }
 
   private func checkForGameWin() {
-      if settings.pointsToAchieve == gameState.score {
+    if settings.pointsToAchieve <= gameState.score {
       gameState.won.toggle()
     }
   }
