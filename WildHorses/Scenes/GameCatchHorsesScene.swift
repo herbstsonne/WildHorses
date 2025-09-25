@@ -53,8 +53,8 @@ class GameCatchHorsesScene: SKScene {
     guard let camera = self.camera else { return }
 
     loopingBackground?.loop(camera: camera)
-    if self.children.contains(where: { $0.name == "horse" }) { return }
-      do {
+    if self.children.contains(where: { $0.name == "horse" }) && horseAnimation?.numberOfHorsesInView() ?? 0 > 0 { return }
+    do {
         try horseAnimation?.addMoreHorses(camera: camera)
       } catch {
         print(error)

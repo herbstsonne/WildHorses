@@ -8,6 +8,7 @@ public protocol HorseAnimatable {
   mutating func addMoreHorses(camera: SKCameraNode) throws
   mutating func run(startPosition: CGPoint, horseNode: SpriteNodeProtocol) throws
   mutating func caught(touchLocation: CGPoint, pointsLabel: SKLabelNode)
+  func numberOfHorsesInView() -> Int
 }
 
 struct AnimatedHorse: HorseAnimatable {
@@ -47,10 +48,12 @@ struct AnimatedHorse: HorseAnimatable {
 
     for _ in 0..<settings.numberOfHorses {
       let horseNode = SKSpriteNode(texture: SKTexture(imageNamed: "horse_run0"), color: .blue, size: CGSize(width: 100, height: 100))
+      let startPositionX = Double.random(in: camera.position.x...camera.position.x + parentNode.size.width)
       try run(
-        startPosition: CGPoint(x: Double.random(in: parentNode.size.width + camera.position.x...parentNode.size.width + camera.position.x + 500), y: Double.random(in: parentNode.frame.minY + 50...parentNode.frame.maxY - 250)),
+        startPosition: CGPoint(x: startPositionX, y: Double.random(in: parentNode.frame.minY + 50...parentNode.frame.maxY - 250)),
           horseNode: horseNode
         )
+      print("Added a horse at: \(startPositionX)")
     }
   }
 
@@ -86,6 +89,22 @@ struct AnimatedHorse: HorseAnimatable {
         }
       }
     }
+  }
+  
+  func numberOfHorsesInView() -> Int {
+    guard let camera = scene?.camera else { return 0 }
+    
+    print("Camera position x: \(camera.position.x)")
+    print("Scene width: \(scene?.size.width)")
+
+    var number = 0
+
+    for horse in horses {
+      if camera.position.x + (scene?.size.width ?? 0)/2 > horse.position.x && camera.position.x - (scene?.size.width ?? 0)/2 < horse.position.x {
+        number += 1
+      }
+    }
+    return number
   }
 
   private mutating func collectHorseFrames() -> [SKTexture] {
