@@ -95,7 +95,7 @@ struct AnimatedHorse: HorseAnimatable {
     guard let camera = scene?.camera else { return 0 }
     
     print("Camera position x: \(camera.position.x)")
-    print("Scene width: \(scene?.size.width)")
+    print("Scene width: \(scene?.size.width ?? 0)")
 
     var number = 0
 
